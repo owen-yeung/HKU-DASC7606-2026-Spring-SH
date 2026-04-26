@@ -26,8 +26,15 @@ class CLIP(nn.Module):
     ):
         super().__init__()
         # TODO: Image encoder (ResNet50 or ViT)
+        self.image_encoder = ImageEncoder(
+            encoder_type=encoder_type,
+            embed_dim=embed_dim,
+            pretrained=pretrained,
+        )
 
         # TODO: Text tokenizer and encoder (RoBERTa-based)
+        self.text_tokenizer = TextTokenizer()
+        self.text_encoder = TextEncoder(embed_dim=embed_dim, pretrained=pretrained)
 
         # Temperature parameter for scaling logits in contrastive loss
         # Learnable log-temperature
@@ -50,16 +57,23 @@ class CLIP(nn.Module):
         """
         # TODO: Encode images
         # Shape: [batch_size, embed_dim]
+        image_embeddings = self.image_encoder(images)
 
         # TODO: Tokenize text then encode tokens
         # Shape: [batch_size, embed_dim]
+        input_ids, attention_mask = self.text_tokenizer(texts, device=images.device)
+        text_embeddings = self.text_encoder(input_ids, attention_mask)
 
         # TODO: L2 normalize both embeddings, so that their dot product equals cosine similarity
+        image_embeddings = F.normalize(image_embeddings, dim=-1)
+        text_embeddings = F.normalize(text_embeddings, dim=-1)
 
         # TODO: Compute NxN similarity matrix, then scale by temperature
         # Shape: [batch_size, batch_size]
+        logits = image_embeddings @ text_embeddings.t()
+        logits = logits / self.temperature
 
-        pass
+        return logits
 
     def forward(self, images, texts, labels):
         """
@@ -82,14 +96,18 @@ class CLIP(nn.Module):
         """
         # TODO: Compute the NxN similarity logits
         # Shape: [batch_size, batch_size]
+        logits = self.compute_similarity(images, texts)
 
         # TODO: Compute image-to-text cross entropy loss
+        loss_i2t = F.cross_entropy(logits, labels)
 
         # TODO: Compute text-to-image cross entropy loss
+        loss_t2i = F.cross_entropy(logits.t(), labels)
 
         # TODO: Average both loss directions
+        loss = 0.5 * (loss_i2t + loss_t2i)
 
-        pass
+        return {"logits": logits, "loss": loss}
 
     def predict(self, images, texts):
         """
@@ -104,6 +122,9 @@ class CLIP(nn.Module):
             probabilities: Class probabilities [batch_size, num_classes]
         """
         # TODO: Compute similarities: [batch_size, num_classes]
+        logits = self.compute_similarity(images, texts)
 
         # TODO: Get predicted class indices and probabilities
-        pass
+        probabilities = F.softmax(logits, dim=1)
+        predictions = probabilities.argmax(dim=1)
+        return predictions, probabilities
