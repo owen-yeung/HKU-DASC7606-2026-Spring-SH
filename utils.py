@@ -80,6 +80,7 @@ def topk_evaluate(
     num_workers=4,
     text_template="a photo of {}",
     topk=[1, 5, 10],
+    return_details=False,
 ):
     """
     Evaluate CLIP model on a dataset and compute top-k accuracy.
@@ -91,6 +92,7 @@ def topk_evaluate(
         num_workers: Number of workers for DataLoader
         text_template: Template for generating text prompts
         topk: List of k values for top-k accuracy (e.g. [1, 5, 10])
+        return_details: If True, also return top-1 misclassified samples
     """
     # TODO: Create dataloader and generate text prompts
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
@@ -128,4 +130,31 @@ def topk_evaluate(
         k_eff = min(k, len(class_names))
         metrics[f"top{k}_accuracy"] = matches[:, :k_eff].any(dim=1).float().mean().item()
 
-    return metrics
+    if not return_details:
+        return metrics
+
+    top1_probs, top1_preds = all_probs.max(dim=1)
+    failure_mask = top1_preds.ne(all_labels)
+    failure_indices = failure_mask.nonzero(as_tuple=True)[0].tolist()
+
+    failures = []
+    for idx in failure_indices:
+        true_label_id = int(all_labels[idx].item())
+        pred_label_id = int(top1_preds[idx].item())
+        failures.append(
+            {
+                "sample_index": int(idx),
+                "true_label_id": true_label_id,
+                "true_label_name": class_names[true_label_id],
+                "predicted_label_id": pred_label_id,
+                "predicted_label_name": class_names[pred_label_id],
+                "predicted_confidence": float(top1_probs[idx].item()),
+            }
+        )
+
+    return {
+        "metrics": metrics,
+        "num_samples": int(all_labels.shape[0]),
+        "num_misclassified": int(len(failures)),
+        "misclassified_samples": failures,
+    }
