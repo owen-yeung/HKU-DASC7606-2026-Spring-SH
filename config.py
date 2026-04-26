@@ -34,3 +34,5 @@ class Config:
     TEST_DIR = "./data/testset"
     EVAL_TEXT_TEMPLATE = "a photo of {}."
     PRED_PATH = "./data/prediction.json"
+    EVAL_PUSHABLE_DIR = "./eval-reports"
+    EVAL_PUSHABLE_TOP_N = 200

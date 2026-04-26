@@ -24,14 +24,32 @@ eval_output_dir = os.path.join(
     Config.OUTPUT_DIR, "eval", datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 )
 os.makedirs(eval_output_dir, exist_ok=True)
+pushable_output_dir = os.path.join(
+    Config.EVAL_PUSHABLE_DIR, datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+)
+os.makedirs(pushable_output_dir, exist_ok=True)
 
 
 def save_eval_result(dataset_name, result):
     output_path = os.path.join(eval_output_dir, f"{dataset_name}.json")
     with open(output_path, "w") as f:
         json.dump(result, f, indent=2)
+
+    top_n = int(Config.EVAL_PUSHABLE_TOP_N)
+    small_result = {
+        "dataset": dataset_name,
+        "metrics": result["metrics"],
+        "num_samples": result["num_samples"],
+        "num_misclassified": result["num_misclassified"],
+        "top_n": top_n,
+        "misclassified_samples_top_n": result["misclassified_samples"][:top_n],
+    }
+    pushable_path = os.path.join(pushable_output_dir, f"{dataset_name}.small.json")
+    with open(pushable_path, "w") as f:
+        json.dump(small_result, f, indent=2)
+
     print(
-        f"[{dataset_name}] metrics={result['metrics']} misclassified={result['num_misclassified']} output={output_path}"
+        f"[{dataset_name}] metrics={result['metrics']} misclassified={result['num_misclassified']} full_output={output_path} pushable_output={pushable_path}"
     )
 
 # CELL 3
