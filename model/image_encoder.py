@@ -22,8 +22,10 @@ class ResNet50Encoder(nn.Module):
         resnet = models.resnet50(weights=weights)
 
         # TODO: Get the feature dimension
+        self.feature_dim = resnet.fc.in_features
 
         # TODO: Remove classification head
+        self.resnet = nn.Sequential(*list(resnet.children())[:-1])
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         """
@@ -35,10 +37,12 @@ class ResNet50Encoder(nn.Module):
         """
         # TODO: Extract features
         # Shape: [batch_size, 2048, 1, 1]
+        features = self.resnet(images)
 
         # TODO: Reshape to [batch_size, 2048]
+        features = features.flatten(start_dim=1)
 
-        pass
+        return features
 
 
 class ViTEncoder(nn.Module):
@@ -55,8 +59,10 @@ class ViTEncoder(nn.Module):
         vit = models.vit_b_16(weights=weights)
 
         # TODO: Get the feature dimension
+        self.feature_dim = vit.heads.head.in_features
 
         # TODO: Replace classification head with identity
+        vit.heads.head = nn.Identity()
 
         self.vit = vit
 
@@ -73,8 +79,9 @@ class ViTEncoder(nn.Module):
         # [CLS] token is the first token in the sequence
         # It always interacts with all other tokens, so it captures global image information
         # Shape: [batch_size, 768]
+        features = self.vit(images)
 
-        pass
+        return features
 
 
 class ImageEncoder(nn.Module):
@@ -98,9 +105,16 @@ class ImageEncoder(nn.Module):
             raise ValueError(f"Unknown encoder type: {encoder_type}")
 
         # TODO: Freeze pre-trained encoder parameters
+        for param in self.encoder.parameters():
+            param.requires_grad = False
 
         # TODO: Create a sequential network that maps encoder features to embed_dim
         # Architecture: Linear -> ReLU -> Linear
+        self.projection = nn.Sequential(
+            nn.Linear(self.encoder.feature_dim, self.encoder.feature_dim),
+            nn.ReLU(),
+            nn.Linear(self.encoder.feature_dim, embed_dim),
+        )
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         """
@@ -111,5 +125,7 @@ class ImageEncoder(nn.Module):
             embeddings: Image embeddings [batch_size, embed_dim]
         """
         # TODO: Extract features
+        features = self.encoder(images)
         # TODO: Project features to embedding space
-        pass
+        embeddings = self.projection(features)
+        return embeddings

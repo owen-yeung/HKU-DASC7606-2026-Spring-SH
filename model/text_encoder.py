@@ -33,6 +33,11 @@ class TextEncoder(nn.Module):
 
         # TODO: Create self.projection: a Sequential network that maps RoBERTa features to embed_dim
         # Architecture: Linear -> ReLU -> Linear
+        self.projection = nn.Sequential(
+            nn.Linear(self.feature_dim, self.feature_dim),
+            nn.ReLU(),
+            nn.Linear(self.feature_dim, embed_dim),
+        )
 
     def forward(
         self,
@@ -49,13 +54,21 @@ class TextEncoder(nn.Module):
         """
         # TODO: Get RoBERTa outputs
         # Shape of last_hidden_state: [batch_size, seq_length, hidden_dim]
+        outputs = self.roberta(input_ids=input_ids, attention_mask=attention_mask)
 
         # TODO: Extract token-level embeddings
+        token_embeddings = outputs.last_hidden_state
 
         # TODO: Perform mean pooling over non-padding tokens using attention_mask
+        mask = attention_mask.unsqueeze(-1).type_as(token_embeddings)
+        masked_embeddings = token_embeddings * mask
+        summed = masked_embeddings.sum(dim=1)
+        lengths = mask.sum(dim=1).clamp(min=1e-9)
+        sentence_embeddings = summed / lengths
 
         # TODO: Project sentence embeddings to embed_dim
-        pass
+        embeddings = self.projection(sentence_embeddings)
+        return embeddings
 
 
 class TextTokenizer:
