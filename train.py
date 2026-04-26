@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from functools import partial
+import matplotlib.pyplot as plt
 from transformers import TrainingArguments, Trainer
 from config import Config
 from data.dataset import get_transform, load_imagenet
@@ -58,3 +59,27 @@ trainer = Trainer(
 )
 
 trainer.train()
+
+# Plot and save training loss curve from Trainer logs.
+train_steps = []
+train_losses = []
+for log_entry in trainer.state.log_history:
+    if "loss" in log_entry and "eval_loss" not in log_entry:
+        train_steps.append(log_entry.get("step", len(train_steps) + 1))
+        train_losses.append(log_entry["loss"])
+
+if train_losses:
+    plt.figure(figsize=(8, 5))
+    plt.plot(train_steps, train_losses, marker="o", linewidth=1.5, markersize=3)
+    plt.title("Training Loss Curve")
+    plt.xlabel("Step")
+    plt.ylabel("Loss")
+    plt.grid(True, linestyle="--", alpha=0.5)
+    plt.tight_layout()
+
+    loss_curve_path = os.path.join(output_dir, "training_loss_curve.png")
+    plt.savefig(loss_curve_path, dpi=150)
+    plt.close()
+    print(f"Saved training loss curve to: {loss_curve_path}")
+else:
+    print("No training loss entries found in trainer log history.")
