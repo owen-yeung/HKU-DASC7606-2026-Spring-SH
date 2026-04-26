@@ -26,7 +26,7 @@ random.seed(SEED)
 
 print("Loading dataset in streaming mode …")
 # https://huggingface.co/docs/datasets/main/en/stream
-ds = load_dataset("imagenet-1k", split="train", streaming=True)
+ds = load_dataset("ILSVRC/imagenet-1k", split="train", streaming=True)
 class_label = ds.features["label"]
 
 # Randomly select target classes to collect (e.g. 500 random classes out of 1000 total)
