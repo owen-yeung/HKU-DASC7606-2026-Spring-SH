@@ -19,6 +19,8 @@ SEED = 42
 NUM_CLASSES = 500
 IMAGES_PER_CLASS = 500
 NUM_IMAGES = NUM_CLASSES * IMAGES_PER_CLASS
+# Default resume point for interrupted downloads.
+DEFAULT_RESUME_IMAGES = 23_308
 OUTPUT_DIR = Path(__file__).parent.joinpath("imagenet")
 OUTPUT_DIR.mkdir(exist_ok=True)
 random.seed(SEED)
@@ -37,9 +39,24 @@ ds = ds.shuffle(seed=SEED, buffer_size=10_000)
 
 # label_id -> saved count
 saved_count = {}
-total_saved = 0
+for label_id in range(class_label.num_classes):
+    class_name = class_label.int2str(label_id)
+    class_dir = OUTPUT_DIR.joinpath(class_name)
+    if class_dir.exists():
+        saved_count[label_id] = len(list(class_dir.glob("*.jpg")))
 
-with tqdm(total=NUM_IMAGES, desc="Saving images", unit="img") as pbar:
+saved_from_disk = sum(saved_count.values())
+if saved_from_disk >= DEFAULT_RESUME_IMAGES:
+    total_saved = saved_from_disk
+else:
+    total_saved = DEFAULT_RESUME_IMAGES
+    print(
+        f"Resuming from default image index {DEFAULT_RESUME_IMAGES}, "
+        f"but only found {saved_from_disk} images on disk."
+    )
+print(f"Starting from {total_saved}/{NUM_IMAGES} images saved.")
+
+with tqdm(total=NUM_IMAGES, desc="Saving images", unit="img", initial=total_saved) as pbar:
     for item in ds:
         label_id = item["label"]
 
