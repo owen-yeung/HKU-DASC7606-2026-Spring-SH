@@ -4,7 +4,7 @@ Handles loading and preprocessing datasets
 
 import torch
 import torchvision.transforms as T
-from torch.utils.data import random_split
+from torch.utils.data import Dataset, random_split
 from torchvision.datasets import ImageFolder
 from datasets import load_dataset
 from functools import partial
@@ -54,37 +54,85 @@ def get_transform():
     Returns:
         transform: Composed transformations
     """
+    return get_eval_transform()
+
+
+def get_train_transform():
+    """
+    Get stronger training-time transforms for robustness and regularization.
+    """
     imgnet_mean = [0.485, 0.456, 0.406]
     imgnet_std = [0.229, 0.224, 0.225]
     return T.Compose(
         [
-            T.Resize((224, 224)),
+            T.RandomResizedCrop(224, scale=(0.6, 1.0)),
+            T.RandomHorizontalFlip(p=0.5),
+            T.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.05),
+            T.ToTensor(),
+            T.Normalize(mean=imgnet_mean, std=imgnet_std),
+            T.RandomErasing(p=0.1),
+        ]
+    )
+
+
+def get_eval_transform():
+    """
+    Get deterministic eval/test transforms.
+    """
+    imgnet_mean = [0.485, 0.456, 0.406]
+    imgnet_std = [0.229, 0.224, 0.225]
+    return T.Compose(
+        [
+            T.Resize(256),
+            T.CenterCrop(224),
             T.ToTensor(),
             T.Normalize(mean=imgnet_mean, std=imgnet_std),
         ]
     )
 
 
-def load_imagenet(root, transform=None, val_split=0.2):
+class TransformSubset(Dataset):
+    """
+    Wrapper that applies a transform after random_split.
+    """
+
+    def __init__(self, subset, transform=None):
+        self.subset = subset
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.subset)
+
+    def __getitem__(self, idx):
+        image, label = self.subset[idx]
+        if self.transform is not None:
+            image = self.transform(image)
+        return image, label
+
+
+def load_imagenet(root, train_transform=None, val_transform=None, val_split=0.2):
     """
     Load ImageNet dataset using torchvision's ImageFolder.
 
     Args:
         root: Root directory of the ImageNet dataset
-        transform: Transformations to apply to images
+        train_transform: Transformations to apply to training images
+        val_transform: Transformations to apply to validation images
         val_split: Fraction of data to use for validation
 
     Returns:
         dict: Dictionary containing full, train, and validation datasets
     """
-    dataset = SafeImageFolder(root=root, transform=transform)
+    dataset = SafeImageFolder(root=root, transform=None)
     val_size = int(len(dataset) * val_split)
     train_size = len(dataset) - val_size
-    train_set, val_set = random_split(
+    train_subset, val_subset = random_split(
         dataset,
         [train_size, val_size],
         generator=torch.Generator().manual_seed(42),
     )
+    train_set = TransformSubset(train_subset, transform=train_transform)
+    val_set = TransformSubset(val_subset, transform=val_transform)
     return {"full": dataset, "train": train_set, "val": val_set}
 
 

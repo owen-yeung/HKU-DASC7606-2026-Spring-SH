@@ -79,6 +79,7 @@ def topk_evaluate(
     batch_size=64,
     num_workers=4,
     text_template="a photo of {}",
+    text_templates=None,
     topk=[1, 5, 10],
     return_details=False,
 ):
@@ -90,13 +91,14 @@ def topk_evaluate(
         class_names: List of class names corresponding to label IDs
         batch_size: Batch size for evaluation
         num_workers: Number of workers for DataLoader
-        text_template: Template for generating text prompts
+        text_template: Legacy single template for generating text prompts
+        text_templates: Optional list of templates for prompt ensembling
         topk: List of k values for top-k accuracy (e.g. [1, 5, 10])
         return_details: If True, also return top-1 misclassified samples
     """
     # TODO: Create dataloader and generate text prompts
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
-    text_prompts = [text_template.format(class_name) for class_name in class_names]
+    effective_templates = text_templates if text_templates else [text_template]
     device = next(model.parameters()).device
 
     # TODO: Get all predictions, probabilities, and true labels
@@ -114,7 +116,13 @@ def topk_evaluate(
 
             images = images.to(device)
             labels = labels.to(device).long()
-            _, probabilities = model.predict(images, text_prompts)
+            logits_per_template = []
+            for template in effective_templates:
+                text_prompts = [template.format(class_name) for class_name in class_names]
+                logits = model.compute_similarity(images, text_prompts)
+                logits_per_template.append(logits)
+            ensemble_logits = torch.stack(logits_per_template, dim=0).mean(dim=0)
+            probabilities = torch.softmax(ensemble_logits, dim=1)
             all_probs.append(probabilities.cpu())
             all_labels.append(labels.cpu())
 

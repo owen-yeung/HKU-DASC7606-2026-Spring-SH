@@ -95,6 +95,7 @@ class ImageEncoder(nn.Module):
         encoder_type="vit",
         embed_dim=512,
         pretrained=True,
+        trainable_image_blocks=0,
     ):
         super().__init__()
         if encoder_type == "resnet":
@@ -104,9 +105,23 @@ class ImageEncoder(nn.Module):
         else:
             raise ValueError(f"Unknown encoder type: {encoder_type}")
 
-        # TODO: Freeze pre-trained encoder parameters
+        # Freeze pre-trained encoder parameters by default.
         for param in self.encoder.parameters():
             param.requires_grad = False
+
+        # Unfreeze only the top image blocks for lightweight adaptation.
+        if trainable_image_blocks > 0:
+            if encoder_type == "resnet":
+                # ResNet structure in self.resnet: [conv1, bn1, relu, maxpool, layer1, layer2, layer3, layer4]
+                block_indices = [7, 6, 5, 4]
+                for block_idx in block_indices[:trainable_image_blocks]:
+                    for param in self.encoder.resnet[block_idx].parameters():
+                        param.requires_grad = True
+            elif encoder_type == "vit":
+                layers = self.encoder.vit.encoder.layers
+                for layer in layers[-trainable_image_blocks:]:
+                    for param in layer.parameters():
+                        param.requires_grad = True
 
         # TODO: Create a sequential network that maps encoder features to embed_dim
         # Architecture: Linear -> ReLU -> Linear

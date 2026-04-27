@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 
 from config import Config
-from data.dataset import get_transform
+from data.dataset import get_eval_transform
 from model.clip import CLIP
 
 
@@ -87,14 +87,19 @@ class_dict = {
 
 # Text prompts for zero-shot classification
 class_names = [class_dict[i] for i in range(len(class_dict))]
-texts = [Config.EVAL_TEXT_TEMPLATE.format(name) for name in class_names]
+prompt_sets = [
+    [template.format(name) for name in class_names]
+    for template in Config.EVAL_TEXT_TEMPLATES
+]
 
-transform = get_transform()
+transform = get_eval_transform()
 model = CLIP(
     encoder_type=Config.IMAGE_ENCODER,
     embed_dim=Config.EMBED_DIM,
     temperature=Config.TEMPERATURE,
     pretrained=False,
+    trainable_image_blocks=Config.UNFREEZE_IMAGE_BLOCKS,
+    trainable_text_layers=Config.UNFREEZE_TEXT_LAYERS,
 )
 state_dict = load_file(Config.BEST_MODEL_PATH)
 model.load_state_dict(state_dict)
@@ -115,7 +120,11 @@ results = []
 with torch.no_grad():
     for images, filenames in tqdm(dataloader, desc="Predicting"):
         images = images.to("cuda")
-        _, probs = model.predict(images, texts)
+        logits_per_template = [
+            model.compute_similarity(images, texts) for texts in prompt_sets
+        ]
+        ensemble_logits = torch.stack(logits_per_template, dim=0).mean(dim=0)
+        probs = torch.softmax(ensemble_logits, dim=1)
         top10_ids = torch.topk(probs, k=10, dim=-1).indices.cpu().tolist()
         for fname, ids in zip(filenames, top10_ids):
             results.append(

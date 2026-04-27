@@ -14,7 +14,7 @@ class TextEncoder(nn.Module):
     Encodes text descriptions and projects them to the embedding space.
     """
 
-    def __init__(self, embed_dim=512, pretrained=True):
+    def __init__(self, embed_dim=512, pretrained=True, trainable_text_layers=0):
         super().__init__()
         # Load pretrained RoBERTa model and tokenizer
         if pretrained:
@@ -27,9 +27,16 @@ class TextEncoder(nn.Module):
             )
         self.feature_dim = self.roberta.config.hidden_size
 
-        # Freeze pretrained RoBERTa parameters
+        # Freeze pretrained RoBERTa parameters by default.
         for param in self.roberta.parameters():
             param.requires_grad = False
+
+        # Unfreeze only the last transformer layers for parameter-efficient tuning.
+        if trainable_text_layers > 0:
+            layers = self.roberta.encoder.layer
+            for layer in layers[-trainable_text_layers:]:
+                for param in layer.parameters():
+                    param.requires_grad = True
 
         # TODO: Create self.projection: a Sequential network that maps RoBERTa features to embed_dim
         # Architecture: Linear -> ReLU -> Linear

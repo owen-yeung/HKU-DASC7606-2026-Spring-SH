@@ -8,7 +8,7 @@ from PIL import Image
 from safetensors.torch import load_file
 from datasets import concatenate_datasets
 from config import Config
-from data.dataset import get_transform, load_imagenet, load_hf_dataset
+from data.dataset import get_eval_transform, load_hf_dataset, load_imagenet
 from model.clip import CLIP
 from utils import topk_evaluate
 
@@ -27,13 +27,15 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-transform = get_transform()
+transform = get_eval_transform()
 use_finetuned = args.weights == "finetuned"
 model = CLIP(
     encoder_type=Config.IMAGE_ENCODER,
     embed_dim=Config.EMBED_DIM,
     temperature=Config.TEMPERATURE,
     pretrained=not use_finetuned,
+    trainable_image_blocks=Config.UNFREEZE_IMAGE_BLOCKS if use_finetuned else 0,
+    trainable_text_layers=Config.UNFREEZE_TEXT_LAYERS if use_finetuned else 0,
 )
 if use_finetuned:
     state_dict = load_file(args.checkpoint)
@@ -189,7 +191,11 @@ def save_eval_result(dataset_name, result, dataset):
 
 # CELL 3
 ## Zero-shot on ImageNet Validation Set
-imgnet = load_imagenet(Config.IMGNET_DIR, transform=transform)
+imgnet = load_imagenet(
+    Config.IMGNET_DIR,
+    train_transform=transform,
+    val_transform=transform,
+)
 val_set = imgnet["val"]
 class_names = imgnet["full"].classes
 print(
@@ -202,7 +208,7 @@ imagenet_result = topk_evaluate(
     class_names,
     batch_size=Config.EVAL_BATCH_SIZE,
     num_workers=Config.NUM_WORKERS,
-    text_template=Config.EVAL_TEXT_TEMPLATE,
+    text_templates=Config.EVAL_TEXT_TEMPLATES,
     return_details=True,
 )
 save_eval_result("imagenet_val", imagenet_result, val_set)
@@ -224,7 +230,7 @@ cifar10_result = topk_evaluate(
     batch_size=Config.EVAL_BATCH_SIZE,
     num_workers=Config.NUM_WORKERS,
     topk=[1, 2, 3],
-    text_template=Config.EVAL_TEXT_TEMPLATE,
+    text_templates=Config.EVAL_TEXT_TEMPLATES,
     return_details=True,
 )
 save_eval_result("cifar10_all", cifar10_result, cifar)
@@ -246,7 +252,7 @@ cifar100_result = topk_evaluate(
     class_names,
     batch_size=Config.EVAL_BATCH_SIZE,
     num_workers=Config.NUM_WORKERS,
-    text_template=Config.EVAL_TEXT_TEMPLATE,
+    text_templates=Config.EVAL_TEXT_TEMPLATES,
     return_details=True,
 )
 save_eval_result("cifar100_all", cifar100_result, cifar)

@@ -5,14 +5,16 @@ from functools import partial
 import matplotlib.pyplot as plt
 from transformers import TrainingArguments, Trainer
 from config import Config
-from data.dataset import get_transform, load_imagenet
+from data.dataset import get_eval_transform, get_train_transform, load_imagenet
 from utils import clip_data_collator, compute_metrics
 from model.clip import CLIP
 
-transform = get_transform()
+train_transform = get_train_transform()
+eval_transform = get_eval_transform()
 datasets = load_imagenet(
     root=Config.IMGNET_DIR,
-    transform=transform,
+    train_transform=train_transform,
+    val_transform=eval_transform,
     val_split=Config.VAL_SPLIT,
 )
 class_names = datasets["full"].classes
@@ -42,6 +44,8 @@ for learning_rate in Config.LR_SWEEP:
                 embed_dim=Config.EMBED_DIM,
                 temperature=temperature,
                 pretrained=True,
+                trainable_image_blocks=Config.UNFREEZE_IMAGE_BLOCKS,
+                trainable_text_layers=Config.UNFREEZE_TEXT_LAYERS,
             )
 
             training_args = TrainingArguments(
@@ -50,7 +54,10 @@ for learning_rate in Config.LR_SWEEP:
                 learning_rate=learning_rate,
                 per_device_train_batch_size=Config.TRAIN_BATCH_SIZE,
                 per_device_eval_batch_size=Config.EVAL_BATCH_SIZE,
+                gradient_accumulation_steps=Config.GRADIENT_ACCUMULATION_STEPS,
                 weight_decay=weight_decay,
+                lr_scheduler_type=Config.LR_SCHEDULER_TYPE,
+                warmup_ratio=Config.WARMUP_RATIO,
                 logging_steps=Config.LOG_STEPS,
                 dataloader_num_workers=Config.NUM_WORKERS,
                 eval_strategy="epoch",
@@ -157,6 +164,12 @@ for learning_rate in Config.LR_SWEEP:
                 "num_epochs": Config.SWEEP_NUM_EPOCHS,
                 "train_batch_size": Config.TRAIN_BATCH_SIZE,
                 "eval_batch_size": Config.EVAL_BATCH_SIZE,
+                "gradient_accumulation_steps": Config.GRADIENT_ACCUMULATION_STEPS,
+                "effective_train_batch_size": (
+                    Config.TRAIN_BATCH_SIZE * Config.GRADIENT_ACCUMULATION_STEPS
+                ),
+                "lr_scheduler_type": Config.LR_SCHEDULER_TYPE,
+                "warmup_ratio": Config.WARMUP_RATIO,
                 "eval_metrics": eval_metrics,
                 "best_model_checkpoint": trainer.state.best_model_checkpoint,
                 "training_loss_curve": (

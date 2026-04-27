@@ -23,6 +23,8 @@ class CLIP(nn.Module):
         embed_dim=512,
         temperature=0.07,
         pretrained=True,
+        trainable_image_blocks=0,
+        trainable_text_layers=0,
     ):
         super().__init__()
         # TODO: Image encoder (ResNet50 or ViT)
@@ -30,11 +32,16 @@ class CLIP(nn.Module):
             encoder_type=encoder_type,
             embed_dim=embed_dim,
             pretrained=pretrained,
+            trainable_image_blocks=trainable_image_blocks,
         )
 
         # TODO: Text tokenizer and encoder (RoBERTa-based)
         self.text_tokenizer = TextTokenizer()
-        self.text_encoder = TextEncoder(embed_dim=embed_dim, pretrained=pretrained)
+        self.text_encoder = TextEncoder(
+            embed_dim=embed_dim,
+            pretrained=pretrained,
+            trainable_text_layers=trainable_text_layers,
+        )
 
         # Temperature parameter for scaling logits in contrastive loss
         # Learnable log-temperature
