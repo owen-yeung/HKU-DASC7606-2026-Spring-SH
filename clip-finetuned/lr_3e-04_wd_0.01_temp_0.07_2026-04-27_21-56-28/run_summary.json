@@ -1,0 +1,23 @@
+{
+  "run_name": "lr_3e-04_wd_0.01_temp_0.07_2026-04-27_21-56-28",
+  "timestamp": "2026-04-27_22-19-13",
+  "learning_rate": 0.0003,
+  "weight_decay": 0.01,
+  "temperature": 0.07,
+  "num_epochs": 3,
+  "train_batch_size": 128,
+  "eval_batch_size": 128,
+  "eval_metrics": {
+    "eval_loss": 0.17918938398361206,
+    "eval_accuracy": 0.8822529315948486,
+    "eval_top5_accuracy": 0.9999799728393555,
+    "eval_top10_accuracy": 1.0,
+    "eval_runtime": 85.8376,
+    "eval_samples_per_second": 582.46,
+    "eval_steps_per_second": 4.555,
+    "epoch": 3.0
+  },
+  "best_model_checkpoint": "./clip-finetuned/lr_3e-04_wd_0.01_temp_0.07_2026-04-27_21-56-28/checkpoint-4689",
+  "training_loss_curve": "training_loss_curve.png",
+  "training_loss_curve_after_first_epoch": "training_loss_curve_after_first_epoch.png"
+}
