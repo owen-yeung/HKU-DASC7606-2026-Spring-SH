@@ -5,5 +5,8 @@ __pycache__
 
 data/imagenet
 data/testset
-clip-finetuned
+clip-finetuned/**
+!clip-finetuned/
+!clip-finetuned/**/
+!clip-finetuned/**/training_loss_curve.png
 backup
