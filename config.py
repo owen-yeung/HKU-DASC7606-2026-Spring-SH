@@ -28,6 +28,7 @@ class Config:
     NUM_WORKERS = 4
     # Sweep settings
     LR_SWEEP = [3e-4]
+    WEIGHT_DECAY_SWEEP = [0.01, 0.1, 0.2]
     SWEEP_NUM_EPOCHS = 5
 
     # Evaluation & Prediction settings
