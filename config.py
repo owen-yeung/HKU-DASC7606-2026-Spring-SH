@@ -21,13 +21,13 @@ class Config:
     OUTPUT_DIR = "./clip-finetuned"
     LEARNING_RATE = 1e-4
     NUM_EPOCHS = 5
-    TRAIN_BATCH_SIZE = 64
-    EVAL_BATCH_SIZE = 64
+    TRAIN_BATCH_SIZE = 128 #64
+    EVAL_BATCH_SIZE = 128 #64
     WEIGHT_DECAY = 0.1
     LOG_STEPS = 10
     NUM_WORKERS = 4
     # Sweep settings
-    LR_SWEEP = [3e-5, 1e-4, 3e-4]
+    LR_SWEEP = [3e-4]
     SWEEP_NUM_EPOCHS = 5
 
     # Evaluation & Prediction settings
