@@ -8,6 +8,43 @@ from torch.utils.data import random_split
 from torchvision.datasets import ImageFolder
 from datasets import load_dataset
 from functools import partial
+from PIL import UnidentifiedImageError
+import warnings
+
+
+class SafeImageFolder(ImageFolder):
+    """
+    ImageFolder variant that skips corrupted/unreadable image files.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._warned_paths = set()
+
+    def __getitem__(self, index):
+        total = len(self.samples)
+        for offset in range(total):
+            current_index = (index + offset) % total
+            path, target = self.samples[current_index]
+            try:
+                sample = self.loader(path)
+                if self.transform is not None:
+                    sample = self.transform(sample)
+                if self.target_transform is not None:
+                    target = self.target_transform(target)
+                return sample, target
+            except (UnidentifiedImageError, OSError, ValueError) as err:
+                if path not in self._warned_paths:
+                    self._warned_paths.add(path)
+                    warnings.warn(
+                        f"Skipping unreadable image file: {path} ({type(err).__name__})",
+                        RuntimeWarning,
+                    )
+                continue
+
+        raise RuntimeError(
+            "All images appear unreadable. Please validate your dataset files."
+        )
 
 
 def get_transform():
@@ -40,7 +77,7 @@ def load_imagenet(root, transform=None, val_split=0.2):
     Returns:
         dict: Dictionary containing full, train, and validation datasets
     """
-    dataset = ImageFolder(root=root, transform=transform)
+    dataset = SafeImageFolder(root=root, transform=transform)
     val_size = int(len(dataset) * val_split)
     train_size = len(dataset) - val_size
     train_set, val_set = random_split(
