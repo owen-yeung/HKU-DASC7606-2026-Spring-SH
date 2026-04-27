@@ -11,4 +11,8 @@ clip-finetuned/**
 !clip-finetuned/**/training_loss_curve.png
 !clip-finetuned/**/training_loss_curve_after_first_epoch.png
 !clip-finetuned/**/run_summary.json
+!eval-reports/**/
+!eval-reports/**/*.small.json
+!eval-reports/**/*.review.html
+!eval-reports/**/*.sample_images/*.png
 backup
