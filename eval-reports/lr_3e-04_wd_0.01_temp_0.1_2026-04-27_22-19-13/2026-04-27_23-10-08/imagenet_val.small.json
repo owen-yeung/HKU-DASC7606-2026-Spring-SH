@@ -1,0 +1,632 @@
+{
+  "dataset": "imagenet_val",
+  "metrics": {
+    "top1_accuracy": 0.9984799027442932,
+    "top5_accuracy": 0.9999600052833557,
+    "top10_accuracy": 0.9999799728393555
+  },
+  "num_samples": 49997,
+  "num_misclassified": 76,
+  "top_n": 200,
+  "image_preview_top_n": 10,
+  "misclassified_samples_top_n": [
+    {
+      "sample_index": 15,
+      "true_label_id": 78,
+      "true_label_name": "barbell",
+      "predicted_label_id": 174,
+      "predicted_label_name": "dumbbell",
+      "predicted_confidence": 0.6365319490432739,
+      "image_preview_path": "imagenet_val.sample_images/000015.png"
+    },
+    {
+      "sample_index": 1813,
+      "true_label_id": 19,
+      "true_label_name": "Eskimo dog, husky",
+      "predicted_label_id": 47,
+      "predicted_label_name": "Siberian husky",
+      "predicted_confidence": 0.5971112847328186,
+      "image_preview_path": "imagenet_val.sample_images/001813.png"
+    },
+    {
+      "sample_index": 1866,
+      "true_label_id": 19,
+      "true_label_name": "Eskimo dog, husky",
+      "predicted_label_id": 47,
+      "predicted_label_name": "Siberian husky",
+      "predicted_confidence": 0.542701005935669,
+      "image_preview_path": "imagenet_val.sample_images/001866.png"
+    },
+    {
+      "sample_index": 1885,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 489,
+      "predicted_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_confidence": 0.5518170595169067,
+      "image_preview_path": "imagenet_val.sample_images/001885.png"
+    },
+    {
+      "sample_index": 2803,
+      "true_label_id": 120,
+      "true_label_name": "can opener, tin opener",
+      "predicted_label_id": 154,
+      "predicted_label_name": "corkscrew, bottle screw",
+      "predicted_confidence": 0.8351869583129883,
+      "image_preview_path": "imagenet_val.sample_images/002803.png"
+    },
+    {
+      "sample_index": 3741,
+      "true_label_id": 212,
+      "true_label_name": "green snake, grass snake",
+      "predicted_label_id": 477,
+      "predicted_label_name": "vine snake",
+      "predicted_confidence": 0.813987135887146,
+      "image_preview_path": "imagenet_val.sample_images/003741.png"
+    },
+    {
+      "sample_index": 3784,
+      "true_label_id": 120,
+      "true_label_name": "can opener, tin opener",
+      "predicted_label_id": 154,
+      "predicted_label_name": "corkscrew, bottle screw",
+      "predicted_confidence": 0.8351869583129883,
+      "image_preview_path": "imagenet_val.sample_images/003784.png"
+    },
+    {
+      "sample_index": 5012,
+      "true_label_id": 415,
+      "true_label_name": "squirrel monkey, Saimiri sciureus",
+      "predicted_label_id": 123,
+      "predicted_label_name": "capuchin, ringtail, Cebus capucinus",
+      "predicted_confidence": 0.5026350617408752,
+      "image_preview_path": "imagenet_val.sample_images/005012.png"
+    },
+    {
+      "sample_index": 5286,
+      "true_label_id": 97,
+      "true_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_label_id": 199,
+      "predicted_label_name": "garden spider, Aranea diademata",
+      "predicted_confidence": 0.6040576696395874,
+      "image_preview_path": "imagenet_val.sample_images/005286.png"
+    },
+    {
+      "sample_index": 5451,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.6220826506614685,
+      "image_preview_path": "imagenet_val.sample_images/005451.png"
+    },
+    {
+      "sample_index": 6250,
+      "true_label_id": 212,
+      "true_label_name": "green snake, grass snake",
+      "predicted_label_id": 477,
+      "predicted_label_name": "vine snake",
+      "predicted_confidence": 0.813987135887146
+    },
+    {
+      "sample_index": 6859,
+      "true_label_id": 459,
+      "true_label_name": "toy terrier",
+      "predicted_label_id": 54,
+      "predicted_label_name": "Yorkshire terrier",
+      "predicted_confidence": 0.5269104242324829
+    },
+    {
+      "sample_index": 6994,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 489,
+      "predicted_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_confidence": 0.5518170595169067
+    },
+    {
+      "sample_index": 7166,
+      "true_label_id": 230,
+      "true_label_name": "hen",
+      "predicted_label_id": 144,
+      "predicted_label_name": "cock",
+      "predicted_confidence": 0.8339783549308777
+    },
+    {
+      "sample_index": 7302,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.9319923520088196
+    },
+    {
+      "sample_index": 7724,
+      "true_label_id": 121,
+      "true_label_name": "candle, taper, wax light",
+      "predicted_label_id": 162,
+      "predicted_label_name": "cup",
+      "predicted_confidence": 0.3357132375240326
+    },
+    {
+      "sample_index": 8280,
+      "true_label_id": 71,
+      "true_label_name": "assault rifle, assault gun",
+      "predicted_label_id": 377,
+      "predicted_label_name": "rifle",
+      "predicted_confidence": 0.6057684421539307
+    },
+    {
+      "sample_index": 8933,
+      "true_label_id": 78,
+      "true_label_name": "barbell",
+      "predicted_label_id": 174,
+      "predicted_label_name": "dumbbell",
+      "predicted_confidence": 0.6365319490432739
+    },
+    {
+      "sample_index": 9002,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.6220826506614685
+    },
+    {
+      "sample_index": 9518,
+      "true_label_id": 318,
+      "true_label_name": "overskirt",
+      "predicted_label_id": 209,
+      "predicted_label_name": "gown",
+      "predicted_confidence": 0.569929838180542
+    },
+    {
+      "sample_index": 9595,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.5738571882247925
+    },
+    {
+      "sample_index": 10116,
+      "true_label_id": 19,
+      "true_label_name": "Eskimo dog, husky",
+      "predicted_label_id": 47,
+      "predicted_label_name": "Siberian husky",
+      "predicted_confidence": 0.542701005935669
+    },
+    {
+      "sample_index": 10540,
+      "true_label_id": 19,
+      "true_label_name": "Eskimo dog, husky",
+      "predicted_label_id": 47,
+      "predicted_label_name": "Siberian husky",
+      "predicted_confidence": 0.510684072971344
+    },
+    {
+      "sample_index": 11156,
+      "true_label_id": 28,
+      "true_label_name": "Great Dane",
+      "predicted_label_id": 31,
+      "predicted_label_name": "Irish wolfhound",
+      "predicted_confidence": 0.6203374862670898
+    },
+    {
+      "sample_index": 12270,
+      "true_label_id": 28,
+      "true_label_name": "Great Dane",
+      "predicted_label_id": 31,
+      "predicted_label_name": "Irish wolfhound",
+      "predicted_confidence": 0.6203374862670898
+    },
+    {
+      "sample_index": 13745,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5935174822807312
+    },
+    {
+      "sample_index": 14730,
+      "true_label_id": 415,
+      "true_label_name": "squirrel monkey, Saimiri sciureus",
+      "predicted_label_id": 123,
+      "predicted_label_name": "capuchin, ringtail, Cebus capucinus",
+      "predicted_confidence": 0.5026350617408752
+    },
+    {
+      "sample_index": 20138,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.9319923520088196
+    },
+    {
+      "sample_index": 20313,
+      "true_label_id": 390,
+      "true_label_name": "schooner",
+      "predicted_label_id": 340,
+      "predicted_label_name": "pirate, pirate ship",
+      "predicted_confidence": 0.5534132122993469
+    },
+    {
+      "sample_index": 20559,
+      "true_label_id": 121,
+      "true_label_name": "candle, taper, wax light",
+      "predicted_label_id": 162,
+      "predicted_label_name": "cup",
+      "predicted_confidence": 0.3357132375240326
+    },
+    {
+      "sample_index": 20621,
+      "true_label_id": 120,
+      "true_label_name": "can opener, tin opener",
+      "predicted_label_id": 154,
+      "predicted_label_name": "corkscrew, bottle screw",
+      "predicted_confidence": 0.8351869583129883
+    },
+    {
+      "sample_index": 20635,
+      "true_label_id": 230,
+      "true_label_name": "hen",
+      "predicted_label_id": 144,
+      "predicted_label_name": "cock",
+      "predicted_confidence": 0.8339783549308777
+    },
+    {
+      "sample_index": 22417,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.6220826506614685
+    },
+    {
+      "sample_index": 22422,
+      "true_label_id": 28,
+      "true_label_name": "Great Dane",
+      "predicted_label_id": 31,
+      "predicted_label_name": "Irish wolfhound",
+      "predicted_confidence": 0.6203374862670898
+    },
+    {
+      "sample_index": 22569,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.5738571882247925
+    },
+    {
+      "sample_index": 23646,
+      "true_label_id": 415,
+      "true_label_name": "squirrel monkey, Saimiri sciureus",
+      "predicted_label_id": 123,
+      "predicted_label_name": "capuchin, ringtail, Cebus capucinus",
+      "predicted_confidence": 0.5026350617408752
+    },
+    {
+      "sample_index": 24106,
+      "true_label_id": 390,
+      "true_label_name": "schooner",
+      "predicted_label_id": 340,
+      "predicted_label_name": "pirate, pirate ship",
+      "predicted_confidence": 0.5534132122993469
+    },
+    {
+      "sample_index": 24449,
+      "true_label_id": 437,
+      "true_label_name": "switch, electric switch, electrical switch",
+      "predicted_label_id": 393,
+      "predicted_label_name": "screw",
+      "predicted_confidence": 0.40529507398605347
+    },
+    {
+      "sample_index": 25638,
+      "true_label_id": 415,
+      "true_label_name": "squirrel monkey, Saimiri sciureus",
+      "predicted_label_id": 123,
+      "predicted_label_name": "capuchin, ringtail, Cebus capucinus",
+      "predicted_confidence": 0.5026350617408752
+    },
+    {
+      "sample_index": 26095,
+      "true_label_id": 71,
+      "true_label_name": "assault rifle, assault gun",
+      "predicted_label_id": 377,
+      "predicted_label_name": "rifle",
+      "predicted_confidence": 0.6057684421539307
+    },
+    {
+      "sample_index": 26208,
+      "true_label_id": 78,
+      "true_label_name": "barbell",
+      "predicted_label_id": 174,
+      "predicted_label_name": "dumbbell",
+      "predicted_confidence": 0.5432664155960083
+    },
+    {
+      "sample_index": 26386,
+      "true_label_id": 390,
+      "true_label_name": "schooner",
+      "predicted_label_id": 340,
+      "predicted_label_name": "pirate, pirate ship",
+      "predicted_confidence": 0.5534132122993469
+    },
+    {
+      "sample_index": 27059,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 489,
+      "predicted_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_confidence": 0.5518170595169067
+    },
+    {
+      "sample_index": 27213,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5935174822807312
+    },
+    {
+      "sample_index": 27543,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.9319923520088196
+    },
+    {
+      "sample_index": 27622,
+      "true_label_id": 390,
+      "true_label_name": "schooner",
+      "predicted_label_id": 340,
+      "predicted_label_name": "pirate, pirate ship",
+      "predicted_confidence": 0.5534132122993469
+    },
+    {
+      "sample_index": 28332,
+      "true_label_id": 78,
+      "true_label_name": "barbell",
+      "predicted_label_id": 174,
+      "predicted_label_name": "dumbbell",
+      "predicted_confidence": 0.6365319490432739
+    },
+    {
+      "sample_index": 28611,
+      "true_label_id": 78,
+      "true_label_name": "barbell",
+      "predicted_label_id": 174,
+      "predicted_label_name": "dumbbell",
+      "predicted_confidence": 0.6365319490432739
+    },
+    {
+      "sample_index": 29491,
+      "true_label_id": 36,
+      "true_label_name": "Leonberg",
+      "predicted_label_id": 35,
+      "predicted_label_name": "Labrador retriever",
+      "predicted_confidence": 0.8892010450363159
+    },
+    {
+      "sample_index": 30677,
+      "true_label_id": 375,
+      "true_label_name": "restaurant, eating house, eating place, eatery",
+      "predicted_label_id": 455,
+      "predicted_label_name": "toilet seat",
+      "predicted_confidence": 0.48608189821243286
+    },
+    {
+      "sample_index": 32078,
+      "true_label_id": 212,
+      "true_label_name": "green snake, grass snake",
+      "predicted_label_id": 477,
+      "predicted_label_name": "vine snake",
+      "predicted_confidence": 0.7846367359161377
+    },
+    {
+      "sample_index": 32395,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 489,
+      "predicted_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_confidence": 0.5518170595169067
+    },
+    {
+      "sample_index": 32615,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 489,
+      "predicted_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_confidence": 0.5518170595169067
+    },
+    {
+      "sample_index": 33173,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.7154267430305481
+    },
+    {
+      "sample_index": 33212,
+      "true_label_id": 97,
+      "true_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_label_id": 199,
+      "predicted_label_name": "garden spider, Aranea diademata",
+      "predicted_confidence": 0.6040576696395874
+    },
+    {
+      "sample_index": 34714,
+      "true_label_id": 318,
+      "true_label_name": "overskirt",
+      "predicted_label_id": 209,
+      "predicted_label_name": "gown",
+      "predicted_confidence": 0.569929838180542
+    },
+    {
+      "sample_index": 36558,
+      "true_label_id": 459,
+      "true_label_name": "toy terrier",
+      "predicted_label_id": 54,
+      "predicted_label_name": "Yorkshire terrier",
+      "predicted_confidence": 0.5269104242324829
+    },
+    {
+      "sample_index": 36641,
+      "true_label_id": 281,
+      "true_label_name": "maraca",
+      "predicted_label_id": 297,
+      "predicted_label_name": "modem",
+      "predicted_confidence": 0.24413572251796722
+    },
+    {
+      "sample_index": 37176,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.9319923520088196
+    },
+    {
+      "sample_index": 37567,
+      "true_label_id": 78,
+      "true_label_name": "barbell",
+      "predicted_label_id": 174,
+      "predicted_label_name": "dumbbell",
+      "predicted_confidence": 0.5503709316253662
+    },
+    {
+      "sample_index": 38450,
+      "true_label_id": 398,
+      "true_label_name": "seashore, coast, seacoast, sea-coast",
+      "predicted_label_id": 386,
+      "predicted_label_name": "sandbar, sand bar",
+      "predicted_confidence": 0.6094260215759277
+    },
+    {
+      "sample_index": 39041,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.7154267430305481
+    },
+    {
+      "sample_index": 39106,
+      "true_label_id": 459,
+      "true_label_name": "toy terrier",
+      "predicted_label_id": 54,
+      "predicted_label_name": "Yorkshire terrier",
+      "predicted_confidence": 0.5269104242324829
+    },
+    {
+      "sample_index": 39266,
+      "true_label_id": 71,
+      "true_label_name": "assault rifle, assault gun",
+      "predicted_label_id": 377,
+      "predicted_label_name": "rifle",
+      "predicted_confidence": 0.6057684421539307
+    },
+    {
+      "sample_index": 39410,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.9319923520088196
+    },
+    {
+      "sample_index": 41134,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.5738571882247925
+    },
+    {
+      "sample_index": 42110,
+      "true_label_id": 97,
+      "true_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_label_id": 199,
+      "predicted_label_name": "garden spider, Aranea diademata",
+      "predicted_confidence": 0.6040576696395874
+    },
+    {
+      "sample_index": 43402,
+      "true_label_id": 212,
+      "true_label_name": "green snake, grass snake",
+      "predicted_label_id": 477,
+      "predicted_label_name": "vine snake",
+      "predicted_confidence": 0.813987135887146
+    },
+    {
+      "sample_index": 43675,
+      "true_label_id": 318,
+      "true_label_name": "overskirt",
+      "predicted_label_id": 209,
+      "predicted_label_name": "gown",
+      "predicted_confidence": 0.569929838180542
+    },
+    {
+      "sample_index": 44238,
+      "true_label_id": 120,
+      "true_label_name": "can opener, tin opener",
+      "predicted_label_id": 154,
+      "predicted_label_name": "corkscrew, bottle screw",
+      "predicted_confidence": 0.8351869583129883
+    },
+    {
+      "sample_index": 44526,
+      "true_label_id": 212,
+      "true_label_name": "green snake, grass snake",
+      "predicted_label_id": 477,
+      "predicted_label_name": "vine snake",
+      "predicted_confidence": 0.813987135887146
+    },
+    {
+      "sample_index": 45739,
+      "true_label_id": 212,
+      "true_label_name": "green snake, grass snake",
+      "predicted_label_id": 477,
+      "predicted_label_name": "vine snake",
+      "predicted_confidence": 0.813987135887146
+    },
+    {
+      "sample_index": 46586,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5935174822807312
+    },
+    {
+      "sample_index": 47211,
+      "true_label_id": 456,
+      "true_label_name": "toilet tissue, toilet paper, bathroom tissue",
+      "predicted_label_id": 455,
+      "predicted_label_name": "toilet seat",
+      "predicted_confidence": 0.5572038292884827
+    },
+    {
+      "sample_index": 49188,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5935174822807312
+    },
+    {
+      "sample_index": 49202,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5935174822807312
+    }
+  ]
+}
