@@ -72,22 +72,31 @@ if args.start_image is not None:
         raise ValueError(f"--start-image must be in [0, {NUM_IMAGES - 1}]")
     start_image_idx = args.start_image
     total_saved = 0
+    progress_initial = start_image_idx
     print(f"Skipping to global selected-image index {start_image_idx}.")
 elif saved_from_disk >= DEFAULT_RESUME_IMAGES:
     start_image_idx = 0
     total_saved = saved_from_disk
+    progress_initial = total_saved
 else:
     start_image_idx = 0
     total_saved = DEFAULT_RESUME_IMAGES
+    progress_initial = total_saved
     print(
         f"Resuming from default image index {DEFAULT_RESUME_IMAGES}, "
         f"but only found {saved_from_disk} images on disk."
     )
-print(f"Starting from {total_saved}/{NUM_IMAGES} images saved.")
+if args.start_image is not None:
+    print(
+        f"Starting from selected-image position {start_image_idx}/{NUM_IMAGES}; "
+        f"{saved_from_disk} images currently on disk."
+    )
+else:
+    print(f"Starting from {total_saved}/{NUM_IMAGES} images saved.")
 
-with tqdm(total=NUM_IMAGES, desc="Saving images", unit="img", initial=total_saved) as pbar:
+with tqdm(total=NUM_IMAGES, desc="Saving images", unit="img", initial=progress_initial) as pbar:
     selected_seen = 0
-    stream_class_count = {}
+    stream_class_count: dict[int, int] = {}
     for item in ds:
         label_id = item["label"]
 
@@ -109,6 +118,8 @@ with tqdm(total=NUM_IMAGES, desc="Saving images", unit="img", initial=total_save
         cnt = saved_count.get(label_id, 0)
         if cnt >= IMAGES_PER_CLASS:
             selected_seen += 1
+            if args.start_image is not None:
+                pbar.update(1)
             continue
 
         # Save the image
