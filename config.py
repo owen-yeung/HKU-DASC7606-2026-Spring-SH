@@ -18,9 +18,9 @@ class Config:
     TEXT_TEMPLATES = ["a photo of {}."]
 
     # Training settings
-    OUTPUT_DIR = "./clip-finetuned"
+    OUTPUT_DIR = "./clip-finetuned/LR=3e-04 epochs=8"
     LEARNING_RATE = 1e-4
-    NUM_EPOCHS = 5
+    NUM_EPOCHS = 8 # seems like the real controller is SWEEP_NUM_EPOCHS
     TRAIN_BATCH_SIZE = 128 #64
     EVAL_BATCH_SIZE = 128 #64
     WEIGHT_DECAY = 0.1
@@ -28,9 +28,9 @@ class Config:
     NUM_WORKERS = 4
     # Sweep settings
     LR_SWEEP = [3e-4]
-    WEIGHT_DECAY_SWEEP = [0.01, 0.1, 0.2]
-    TEMPERATURE_SWEEP = [0.05, 0.07, 0.1]
-    SWEEP_NUM_EPOCHS = 3
+    WEIGHT_DECAY_SWEEP = [0.1] # [0.01, 0.1, 0.2]
+    TEMPERATURE_SWEEP = [0.05] # [0.05, 0.07, 0.1]
+    SWEEP_NUM_EPOCHS = 8
 
     # Evaluation & Prediction settings
     BEST_MODEL_PATH = (
