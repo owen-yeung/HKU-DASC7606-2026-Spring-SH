@@ -22,10 +22,7 @@ data_collator = partial(
     text_templates=Config.TEXT_TEMPLATES,
 )
 
-LEARNING_RATE_SWEEP = [3e-5, 1e-4, 3e-4]
-SWEEP_NUM_EPOCHS = 5
-
-for learning_rate in LEARNING_RATE_SWEEP:
+for learning_rate in Config.LR_SWEEP:
     run_name = f"lr_{learning_rate:.0e}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
     output_dir = os.path.join(Config.OUTPUT_DIR, run_name)
     os.makedirs(output_dir, exist_ok=True)
@@ -40,7 +37,7 @@ for learning_rate in LEARNING_RATE_SWEEP:
 
     training_args = TrainingArguments(
         output_dir=output_dir,
-        num_train_epochs=SWEEP_NUM_EPOCHS,
+        num_train_epochs=Config.SWEEP_NUM_EPOCHS,
         learning_rate=learning_rate,
         per_device_train_batch_size=Config.TRAIN_BATCH_SIZE,
         per_device_eval_batch_size=Config.EVAL_BATCH_SIZE,

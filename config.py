@@ -26,6 +26,9 @@ class Config:
     WEIGHT_DECAY = 0.1
     LOG_STEPS = 10
     NUM_WORKERS = 4
+    # Sweep settings
+    LR_SWEEP = [3e-5, 1e-4, 3e-4]
+    SWEEP_NUM_EPOCHS = 5
 
     # Evaluation & Prediction settings
     BEST_MODEL_PATH = (
