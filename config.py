@@ -35,10 +35,11 @@ class Config:
     # Evaluation & Prediction settings
     BEST_MODEL_PATH = (
         # "./clip-finetuned/2026-03-27_17-15-41/checkpoint-3125/model.safetensors"
-        "./clip-finetuned/lr_3e-04_2026-04-27_19-15-21/checkpoint-9375/model.safetensors"
+        # "./clip-finetuned/lr_3e-04_2026-04-27_19-15-21/checkpoint-9375/model.safetensors"
+        "./clip-finetuned/lr_3e-04_wd_0.01_temp_0.1_2026-04-27_22-19-13/checkpoint-4689/model.safetensors"
     )
     TEST_DIR = "./data/testset"
     EVAL_TEXT_TEMPLATE = "a photo of {}."
     PRED_PATH = "./data/prediction.json"
-    EVAL_PUSHABLE_DIR = "./eval-reports"
+    EVAL_PUSHABLE_DIR = "./eval-reports/lr_3e-04_wd_0.01_temp_0.1_2026-04-27_22-19-13"
     EVAL_PUSHABLE_TOP_N = 200
