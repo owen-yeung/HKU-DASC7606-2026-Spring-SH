@@ -30,7 +30,7 @@ class Config:
     LR_SWEEP = [3e-4]
     WEIGHT_DECAY_SWEEP = [0.01, 0.1, 0.2]
     TEMPERATURE_SWEEP = [0.05, 0.07, 0.1]
-    SWEEP_NUM_EPOCHS = 5
+    SWEEP_NUM_EPOCHS = 3
 
     # Evaluation & Prediction settings
     BEST_MODEL_PATH = (
