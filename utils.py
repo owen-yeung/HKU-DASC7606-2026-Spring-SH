@@ -134,8 +134,93 @@ def topk_evaluate(
         return metrics
 
     top1_probs, top1_preds = all_probs.max(dim=1)
+    top1_correct = top1_preds.eq(all_labels)
     failure_mask = top1_preds.ne(all_labels)
     failure_indices = failure_mask.nonzero(as_tuple=True)[0].tolist()
+
+    # Per-class stats for balanced accuracy and class-wise diagnostics.
+    num_classes = len(class_names)
+    class_counts = torch.bincount(all_labels, minlength=num_classes)
+    class_correct = torch.bincount(
+        all_labels[top1_correct], minlength=num_classes
+    )
+    class_accuracy = torch.zeros(num_classes, dtype=torch.float32)
+    valid_mask = class_counts > 0
+    class_accuracy[valid_mask] = (
+        class_correct[valid_mask].float() / class_counts[valid_mask].float()
+    )
+    balanced_accuracy = (
+        class_accuracy[valid_mask].mean().item() if valid_mask.any() else 0.0
+    )
+
+    # Confidence diagnostics.
+    if top1_correct.any():
+        avg_conf_correct = top1_probs[top1_correct].mean().item()
+    else:
+        avg_conf_correct = 0.0
+    if failure_mask.any():
+        avg_conf_incorrect = top1_probs[failure_mask].mean().item()
+    else:
+        avg_conf_incorrect = 0.0
+
+    # Calibration diagnostics: ECE (15 bins) and Brier score.
+    ece_bins = 15
+    ece = 0.0
+    for i in range(ece_bins):
+        left = i / ece_bins
+        right = (i + 1) / ece_bins
+        if i == ece_bins - 1:
+            bin_mask = (top1_probs >= left) & (top1_probs <= right)
+        else:
+            bin_mask = (top1_probs >= left) & (top1_probs < right)
+        if not bin_mask.any():
+            continue
+        bin_acc = top1_correct[bin_mask].float().mean().item()
+        bin_conf = top1_probs[bin_mask].mean().item()
+        bin_weight = bin_mask.float().mean().item()
+        ece += abs(bin_acc - bin_conf) * bin_weight
+
+    one_hot_labels = torch.nn.functional.one_hot(
+        all_labels, num_classes=num_classes
+    ).float()
+    brier_score = ((all_probs - one_hot_labels) ** 2).sum(dim=1).mean().item()
+
+    # Most common confusion pairs: true class -> predicted class for wrong predictions.
+    confusion_counts = {}
+    for true_label_id, pred_label_id in zip(
+        all_labels[failure_mask].tolist(),
+        top1_preds[failure_mask].tolist(),
+    ):
+        key = (int(true_label_id), int(pred_label_id))
+        confusion_counts[key] = confusion_counts.get(key, 0) + 1
+
+    top_confusions = sorted(
+        confusion_counts.items(),
+        key=lambda x: x[1],
+        reverse=True,
+    )[:20]
+    top_confusions = [
+        {
+            "true_label_id": true_id,
+            "true_label_name": class_names[true_id],
+            "predicted_label_id": pred_id,
+            "predicted_label_name": class_names[pred_id],
+            "count": count,
+        }
+        for (true_id, pred_id), count in top_confusions
+    ]
+
+    per_class_accuracy = [
+        {
+            "label_id": idx,
+            "label_name": class_names[idx],
+            "num_samples": int(class_counts[idx].item()),
+            "num_correct_top1": int(class_correct[idx].item()),
+            "top1_accuracy": float(class_accuracy[idx].item()),
+        }
+        for idx in range(num_classes)
+        if class_counts[idx].item() > 0
+    ]
 
     failures = []
     for idx in failure_indices:
@@ -154,7 +239,18 @@ def topk_evaluate(
 
     return {
         "metrics": metrics,
+        "balanced_accuracy": float(balanced_accuracy),
+        "calibration": {
+            "ece_15bins": float(ece),
+            "brier_score": float(brier_score),
+        },
+        "confidence_stats": {
+            "avg_confidence_correct": float(avg_conf_correct),
+            "avg_confidence_incorrect": float(avg_conf_incorrect),
+        },
         "num_samples": int(all_labels.shape[0]),
         "num_misclassified": int(len(failures)),
+        "top_confusions": top_confusions,
+        "per_class_accuracy": per_class_accuracy,
         "misclassified_samples": failures,
     }
