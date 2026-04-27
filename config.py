@@ -32,7 +32,8 @@ class Config:
 
     # Evaluation & Prediction settings
     BEST_MODEL_PATH = (
-        "./clip-finetuned/2026-03-27_17-15-41/checkpoint-3125/model.safetensors"
+        # "./clip-finetuned/2026-03-27_17-15-41/checkpoint-3125/model.safetensors"
+        "./clip-finetuned/lr_3e-04_2026-04-27_19-15-21/checkpoint-9375/model.safetensors"
     )
     TEST_DIR = "./data/testset"
     EVAL_TEXT_TEMPLATE = "a photo of {}."

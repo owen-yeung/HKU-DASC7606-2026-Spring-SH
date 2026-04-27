@@ -72,18 +72,57 @@ for learning_rate in Config.LR_SWEEP:
             train_losses.append(log_entry["loss"])
 
     if train_losses:
-        plt.figure(figsize=(8, 5))
-        plt.plot(train_steps, train_losses, marker="o", linewidth=1.5, markersize=3)
-        plt.title(f"Training Loss Curve (lr={learning_rate})")
-        plt.xlabel("Step")
-        plt.ylabel("Loss")
-        plt.grid(True, linestyle="--", alpha=0.5)
-        plt.tight_layout()
+        def save_loss_curve(steps, losses, title, filename):
+            plt.figure(figsize=(8, 5))
+            plt.plot(steps, losses, marker="o", linewidth=1.5, markersize=3)
+            plt.title(title)
+            plt.xlabel("Step")
+            plt.ylabel("Loss")
+            plt.grid(True, linestyle="--", alpha=0.5)
+            plt.tight_layout()
+            curve_path = os.path.join(output_dir, filename)
+            plt.savefig(curve_path, dpi=150)
+            plt.close()
+            return curve_path
 
-        loss_curve_path = os.path.join(output_dir, "training_loss_curve.png")
-        plt.savefig(loss_curve_path, dpi=150)
-        plt.close()
+        loss_curve_path = save_loss_curve(
+            train_steps,
+            train_losses,
+            f"Training Loss Curve (lr={learning_rate})",
+            "training_loss_curve.png",
+        )
         print(f"Saved training loss curve to: {loss_curve_path}")
+
+        post_first_epoch_steps = []
+        post_first_epoch_losses = []
+        for log_entry in trainer.state.log_history:
+            if (
+                "loss" in log_entry
+                and "eval_loss" not in log_entry
+                and log_entry.get("epoch") is not None
+                and log_entry["epoch"] > 1
+            ):
+                post_first_epoch_steps.append(
+                    log_entry.get("step", len(post_first_epoch_steps) + 1)
+                )
+                post_first_epoch_losses.append(log_entry["loss"])
+
+        if post_first_epoch_losses:
+            post_first_epoch_curve_path = save_loss_curve(
+                post_first_epoch_steps,
+                post_first_epoch_losses,
+                f"Training Loss Curve After Epoch 1 (lr={learning_rate})",
+                "training_loss_curve_after_first_epoch.png",
+            )
+            print(
+                "Saved post-first-epoch training loss curve to: "
+                f"{post_first_epoch_curve_path}"
+            )
+        else:
+            print(
+                "No post-first-epoch training loss entries found in trainer log "
+                f"history for lr={learning_rate}."
+            )
     else:
         print(
             f"No training loss entries found in trainer log history for lr={learning_rate}."
