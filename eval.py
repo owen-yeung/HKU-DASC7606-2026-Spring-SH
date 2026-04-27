@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 from datetime import datetime
@@ -9,15 +10,32 @@ from data.dataset import get_transform, load_imagenet, load_hf_dataset
 from model.clip import CLIP
 from utils import topk_evaluate
 
+parser = argparse.ArgumentParser(description="Evaluate CLIP on multiple datasets.")
+parser.add_argument(
+    "--weights",
+    choices=["pretrained", "finetuned"],
+    default="finetuned",
+    help="Choose whether to use pretrained backbone/text weights or a fine-tuned checkpoint.",
+)
+parser.add_argument(
+    "--checkpoint",
+    type=str,
+    default=Config.BEST_MODEL_PATH,
+    help="Path to fine-tuned .safetensors checkpoint. Used only when --weights finetuned.",
+)
+args = parser.parse_args()
+
 transform = get_transform()
+use_finetuned = args.weights == "finetuned"
 model = CLIP(
     encoder_type=Config.IMAGE_ENCODER,
     embed_dim=Config.EMBED_DIM,
     temperature=Config.TEMPERATURE,
-    pretrained=False,
+    pretrained=not use_finetuned,
 )
-state_dict = load_file(Config.BEST_MODEL_PATH)
-model.load_state_dict(state_dict)
+if use_finetuned:
+    state_dict = load_file(args.checkpoint)
+    model.load_state_dict(state_dict)
 model = model.to("cuda")
 
 eval_output_dir = os.path.join(
