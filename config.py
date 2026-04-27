@@ -25,32 +25,27 @@ class Config:
         "a cropped photo of {}.",
     ]
 
-    # Training settings
-    # Smoke run (~30 min on RTX 4080): 1 epoch, no accum, faster eval/logging.
-    # For full 10h run: set SWEEP_NUM_EPOCHS to 10–12, OUTPUT_DIR, GRADIENT_ACCUMULATION_STEPS=2
-    # if you want effective batch 256, and point BEST_MODEL_PATH to the new checkpoint.
-    OUTPUT_DIR = "./clip-finetuned/smoke-1epoch"
-    LEARNING_RATE = 1e-4
-    NUM_EPOCHS = 1
+    # Training settings — full ~10h run (RTX 4080): cosine + warmup, effective batch 256 (128×2)
+    OUTPUT_DIR = "./clip-finetuned/full-run_lr2.5e-04_wd0.01_epochs11"
+    LEARNING_RATE = 2.5e-4
+    NUM_EPOCHS = 11
     TRAIN_BATCH_SIZE = 128
     EVAL_BATCH_SIZE = 256
-    WEIGHT_DECAY = 0.1
-    LOG_STEPS = 50
+    WEIGHT_DECAY = 0.01
+    LOG_STEPS = 10
     NUM_WORKERS = 4
-    GRADIENT_ACCUMULATION_STEPS = 1
+    GRADIENT_ACCUMULATION_STEPS = 2
     LR_SCHEDULER_TYPE = "cosine"
     WARMUP_RATIO = 0.05
-    # Single combo (same targets as planned long run: lr 2.5e-4, wd 0.01, temp 0.05)
+    # Single run (no sweep grid)
     LR_SWEEP = [2.5e-4]
     WEIGHT_DECAY_SWEEP = [0.01]
     TEMPERATURE_SWEEP = [0.05]
-    SWEEP_NUM_EPOCHS = 1
+    SWEEP_NUM_EPOCHS = 11
 
     # Evaluation & Prediction settings
-    # After smoke: set BEST_MODEL_PATH to .../smoke-1epoch/<run_name>/checkpoint-*/model.safetensors
+    # After training: set to best checkpoint, e.g. .../full-run_.../checkpoint-*/model.safetensors
     BEST_MODEL_PATH = (
-        # "./clip-finetuned/2026-03-27_17-15-41/checkpoint-3125/model.safetensors"
-        # "./clip-finetuned/lr_3e-04_2026-04-27_19-15-21/checkpoint-9375/model.safetensors"
         "./clip-finetuned/lr_3e-04_wd_0.01_temp_0.1_2026-04-27_22-19-13/checkpoint-4689/model.safetensors"
     )
     TEST_DIR = "./data/testset"
@@ -61,5 +56,5 @@ class Config:
         "a cropped photo of {}.",
     ]
     PRED_PATH = "./data/prediction.json"
-    EVAL_PUSHABLE_DIR = "./eval-reports/smoke-1epoch"
+    EVAL_PUSHABLE_DIR = "./eval-reports/full-run"
     EVAL_PUSHABLE_TOP_N = 200
