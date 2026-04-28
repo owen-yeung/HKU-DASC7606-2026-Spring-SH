@@ -46,7 +46,8 @@ class Config:
     # Evaluation & Prediction settings
     # After training: set to best checkpoint, e.g. .../full-run_.../checkpoint-*/model.safetensors
     BEST_MODEL_PATH = (
-        "./clip-finetuned/lr_3e-04_wd_0.01_temp_0.1_2026-04-27_22-19-13/checkpoint-4689/model.safetensors"
+        # "./clip-finetuned/lr_3e-04_wd_0.01_temp_0.1_2026-04-27_22-19-13/checkpoint-4689/model.safetensors"
+        "./clip-finetuned/full-run_lr2.5e-04_wd0.01_epochs11/lr_3e-04_wd_0.01_temp_0.05_2026-04-28_00-04-34/checkpoint-6256/model.safetensors"
     )
     TEST_DIR = "./data/testset"
     EVAL_TEXT_TEMPLATES = [
