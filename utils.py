@@ -1,5 +1,6 @@
 import random
 import torch
+import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
@@ -72,6 +73,130 @@ def compute_metrics(eval_pred):
     }
 
 
+def _parse_aliases(class_name):
+    aliases = [part.strip() for part in class_name.split(",") if part.strip()]
+    if not aliases:
+        aliases = [class_name.strip()]
+    return aliases
+
+
+def build_prompt_specs(class_names, templates, class_prompt_variants=None):
+    if class_prompt_variants is None:
+        class_prompt_variants = {}
+    specs = []
+    for template in templates:
+        prompts = []
+        class_prompt_indices = []
+        for class_name in class_names:
+            aliases = _parse_aliases(class_name)
+            aliases.extend(class_prompt_variants.get(class_name, []))
+            dedup_aliases = list(
+                dict.fromkeys(alias.strip() for alias in aliases if alias.strip())
+            )
+            indices = []
+            for alias in dedup_aliases:
+                indices.append(len(prompts))
+                prompts.append(template.format(alias))
+            class_prompt_indices.append(indices)
+        specs.append(
+            {
+                "template": template,
+                "prompts": prompts,
+                "class_prompt_indices": class_prompt_indices,
+            }
+        )
+    return specs
+
+
+def normalize_template_weights(num_templates, template_weights=None):
+    if not template_weights:
+        return torch.ones(num_templates, dtype=torch.float32) / float(num_templates)
+
+    if len(template_weights) != num_templates:
+        raise ValueError(
+            "Number of template weights must match number of templates. "
+            f"Got {len(template_weights)} weights for {num_templates} templates."
+        )
+    weights = torch.tensor(template_weights, dtype=torch.float32)
+    weight_sum = weights.sum().item()
+    if weight_sum <= 0:
+        raise ValueError("Template weights must sum to a positive value.")
+    return weights / weight_sum
+
+
+def _center_zoom(images, ratio):
+    if ratio <= 0 or ratio > 1:
+        raise ValueError("Zoom ratio must be in (0, 1].")
+    if ratio == 1:
+        return images
+    _, _, h, w = images.shape
+    crop_h = max(1, int(round(h * ratio)))
+    crop_w = max(1, int(round(w * ratio)))
+    top = (h - crop_h) // 2
+    left = (w - crop_w) // 2
+    cropped = images[:, :, top : top + crop_h, left : left + crop_w]
+    return F.interpolate(cropped, size=(h, w), mode="bilinear", align_corners=False)
+
+
+def build_tta_views(images, tta_modes=None):
+    effective_modes = tta_modes if tta_modes else ["base"]
+    views = []
+    for mode in effective_modes:
+        if mode == "base":
+            views.append(images)
+        elif mode == "hflip":
+            views.append(torch.flip(images, dims=[3]))
+        elif mode == "center_zoom_90":
+            views.append(_center_zoom(images, ratio=0.90))
+        elif mode == "center_zoom_80":
+            views.append(_center_zoom(images, ratio=0.80))
+        else:
+            raise ValueError(f"Unknown TTA mode: {mode}")
+    return views
+
+
+def compute_class_logits(model, images, prompt_specs, template_weights):
+    per_template_logits = []
+    for spec in prompt_specs:
+        logits = model.compute_similarity(images, spec["prompts"])
+        class_logits = [
+            logits[:, idxs].mean(dim=1) for idxs in spec["class_prompt_indices"]
+        ]
+        per_template_logits.append(torch.stack(class_logits, dim=1))
+    stacked = torch.stack(per_template_logits, dim=0)  # [T, B, C]
+    return (stacked * template_weights[:, None, None]).sum(dim=0)
+
+
+def compute_ensemble_logits(
+    model,
+    images,
+    class_names,
+    text_templates,
+    template_weights=None,
+    class_prompt_variants=None,
+    tta_modes=None,
+):
+    prompt_specs = build_prompt_specs(
+        class_names=class_names,
+        templates=text_templates,
+        class_prompt_variants=class_prompt_variants,
+    )
+    normalized_weights = normalize_template_weights(
+        num_templates=len(text_templates),
+        template_weights=template_weights,
+    ).to(images.device)
+    view_logits = []
+    for view in build_tta_views(images, tta_modes):
+        logits = compute_class_logits(
+            model=model,
+            images=view,
+            prompt_specs=prompt_specs,
+            template_weights=normalized_weights,
+        )
+        view_logits.append(logits)
+    return torch.stack(view_logits, dim=0).mean(dim=0)
+
+
 def topk_evaluate(
     model,
     dataset,
@@ -80,6 +205,9 @@ def topk_evaluate(
     num_workers=4,
     text_template="a photo of {}",
     text_templates=None,
+    template_weights=None,
+    class_prompt_variants=None,
+    tta_modes=None,
     topk=[1, 5, 10],
     return_details=False,
 ):
@@ -116,12 +244,15 @@ def topk_evaluate(
 
             images = images.to(device)
             labels = labels.to(device).long()
-            logits_per_template = []
-            for template in effective_templates:
-                text_prompts = [template.format(class_name) for class_name in class_names]
-                logits = model.compute_similarity(images, text_prompts)
-                logits_per_template.append(logits)
-            ensemble_logits = torch.stack(logits_per_template, dim=0).mean(dim=0)
+            ensemble_logits = compute_ensemble_logits(
+                model=model,
+                images=images,
+                class_names=class_names,
+                text_templates=effective_templates,
+                template_weights=template_weights,
+                class_prompt_variants=class_prompt_variants,
+                tta_modes=tta_modes,
+            )
             probabilities = torch.softmax(ensemble_logits, dim=1)
             all_probs.append(probabilities.cpu())
             all_labels.append(labels.cpu())

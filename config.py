@@ -85,3 +85,14 @@ class Config:
     PRED_PATH = "./data/prediction.json"
     EVAL_PUSHABLE_DIR = "./eval-reports/full-run"
     EVAL_PUSHABLE_TOP_N = 200
+    # Shared classification recipe knobs for eval/predict consistency.
+    EVAL_ENABLE_TTA = True
+    EVAL_TTA_MODES = ["base", "hflip", "center_zoom_90", "center_zoom_80"]
+    EVAL_CLASS_PROMPT_VARIANTS = {}
+    # Optional ablation sweep over eval datasets (ImageNet/CIFAR).
+    EVAL_RUN_ABLATIONS = False
+    EVAL_ABLATION_SCORE_WEIGHTS = {
+        "cifar10_top1": 0.4,
+        "cifar100_top1": 0.4,
+        "imagenet_top1": 0.2,
+    }

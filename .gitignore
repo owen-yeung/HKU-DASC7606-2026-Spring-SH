@@ -15,4 +15,9 @@ clip-finetuned/**
 !eval-reports/**/*.small.json
 !eval-reports/**/*.review.html
 !eval-reports/**/*.sample_images/*.png
+!eval-reports/**/eval_ablation_summary.json
+!eval-reports/**/eval_ablation_leaderboard.csv
+!eval-reports/**/eval_ablation_report.md
+!eval-reports/**/eval_ablation_report.html
+!eval-reports/**/eval_ablation_scores.png
 backup
