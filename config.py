@@ -50,12 +50,38 @@ class Config:
         "./clip-finetuned/full-run_lr2.5e-04_wd0.01_epochs11/lr_3e-04_wd_0.01_temp_0.05_2026-04-28_00-04-34/checkpoint-6256/model.safetensors"
     )
     TEST_DIR = "./data/testset"
+    # Testset-first prompt bank (ordered; weights below align to this order).
     EVAL_TEXT_TEMPLATES = [
         "a photo of {}.",
+        "a natural photo of {}.",
+        "a real-world photo of {}.",
         "a centered photo of {}.",
         "a close-up photo of {}.",
+        "a low-resolution photo of {}.",
+        "a blurry photo of {}.",
         "a cropped photo of {}.",
+        "a small {} in a scene.",
+        "a photo of a distant {}.",
     ]
+    # Template weighting for inference-time prompt ensembling.
+    # Set to [] to fall back to uniform averaging.
+    EVAL_TEMPLATE_WEIGHTS = [2.0, 1.2, 1.2, 1.0, 1.1, 1.0, 0.9, 1.0, 1.1, 1.0]
+    # Optional class-specific aliases used only at prediction time.
+    TESTSET_CLASS_PROMPT_VARIANTS = {
+        "dam, dike, dyke": ["hydroelectric dam", "concrete dam wall"],
+        "corn": ["corn cob", "maize ear"],
+        "screen, CRT screen": ["computer monitor", "display screen"],
+        "plane, carpenter's plane, woodworking plane": ["woodworking hand plane"],
+        "pop bottle, soda bottle": ["plastic soda bottle", "soft drink bottle"],
+        "warplane, military plane": ["fighter jet", "military aircraft"],
+        "desktop computer": ["personal computer", "computer tower setup"],
+    }
+    # Deterministic TTA views applied at prediction time.
+    PRED_ENABLE_TTA = True
+    PRED_TTA_MODES = ["base", "hflip", "center_zoom_90", "center_zoom_80"]
+    # Optional ablation runner outputs.
+    PRED_RUN_ABLATIONS = False
+    PRED_ABLATION_OUTPUT_DIR = "./eval-reports/testset-ablation"
     PRED_PATH = "./data/prediction.json"
     EVAL_PUSHABLE_DIR = "./eval-reports/full-run"
     EVAL_PUSHABLE_TOP_N = 200
