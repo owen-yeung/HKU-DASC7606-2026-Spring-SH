@@ -41,6 +41,11 @@ parser.add_argument(
     help="Evaluate all checkpoint-* directories using best ablation recipe.",
 )
 parser.add_argument(
+    "--skip-imagenet",
+    action="store_true",
+    help="Skip ImageNet evaluation and run only CIFAR datasets.",
+)
+parser.add_argument(
     "--ablation-summary",
     type=str,
     default=None,
@@ -224,31 +229,34 @@ def save_eval_result(dataset_name, result, dataset):
 def _evaluate_all_datasets(recipe_name, templates, template_weights, class_prompt_variants, tta_modes):
     dataset_suffix = "" if recipe_name == "default" else f".{recipe_name}"
 
-    imgnet = load_imagenet(
-        Config.IMGNET_DIR,
-        train_transform=transform,
-        val_transform=transform,
-    )
-    val_set = imgnet["val"]
-    class_names = imgnet["full"].classes
-    print(
-        f"[{recipe_name}] Loaded ImageNet validation set with {len(val_set)} samples and {len(class_names)} classes."
-    )
-    imagenet_result = topk_evaluate(
-        model,
-        val_set,
-        class_names,
-        batch_size=Config.EVAL_BATCH_SIZE,
-        num_workers=Config.NUM_WORKERS,
-        text_templates=templates,
-        template_weights=template_weights,
-        class_prompt_variants=class_prompt_variants,
-        tta_modes=tta_modes,
-        return_details=True,
-    )
-    imagenet_paths = save_eval_result(
-        f"imagenet_val{dataset_suffix}", imagenet_result, val_set
-    )
+    imagenet_result = None
+    imagenet_paths = None
+    if not args.skip_imagenet:
+        imgnet = load_imagenet(
+            Config.IMGNET_DIR,
+            train_transform=transform,
+            val_transform=transform,
+        )
+        val_set = imgnet["val"]
+        class_names = imgnet["full"].classes
+        print(
+            f"[{recipe_name}] Loaded ImageNet validation set with {len(val_set)} samples and {len(class_names)} classes."
+        )
+        imagenet_result = topk_evaluate(
+            model,
+            val_set,
+            class_names,
+            batch_size=Config.EVAL_BATCH_SIZE,
+            num_workers=Config.NUM_WORKERS,
+            text_templates=templates,
+            template_weights=template_weights,
+            class_prompt_variants=class_prompt_variants,
+            tta_modes=tta_modes,
+            return_details=True,
+        )
+        imagenet_paths = save_eval_result(
+            f"imagenet_val{dataset_suffix}", imagenet_result, val_set
+        )
 
     cifar10 = load_hf_dataset("uoft-cs/cifar10", transform=transform)
     cifar10 = concatenate_datasets([cifar10["train"], cifar10["test"]])
@@ -297,7 +305,11 @@ def _evaluate_all_datasets(recipe_name, templates, template_weights, class_promp
     )
 
     return {
-        "imagenet_top1": float(imagenet_result["metrics"]["top1_accuracy"]),
+        "imagenet_top1": (
+            float(imagenet_result["metrics"]["top1_accuracy"])
+            if imagenet_result is not None
+            else None
+        ),
         "cifar10_top1": float(cifar10_result["metrics"]["top1_accuracy"]),
         "cifar100_top1": float(cifar100_result["metrics"]["top1_accuracy"]),
         "artifact_paths": {
@@ -310,11 +322,22 @@ def _evaluate_all_datasets(recipe_name, templates, template_weights, class_promp
 
 def _compute_weighted_score(metric_triplet):
     w = Config.EVAL_ABLATION_SCORE_WEIGHTS
-    return (
-        w["cifar10_top1"] * metric_triplet["cifar10_top1"]
-        + w["cifar100_top1"] * metric_triplet["cifar100_top1"]
-        + w["imagenet_top1"] * metric_triplet["imagenet_top1"]
-    )
+    score = 0.0
+    used_weight = 0.0
+    for key in ("cifar10_top1", "cifar100_top1", "imagenet_top1"):
+        value = metric_triplet.get(key)
+        weight = float(w.get(key, 0.0))
+        if value is None or weight <= 0:
+            continue
+        score += weight * float(value)
+        used_weight += weight
+    if used_weight <= 0:
+        return 0.0
+    return score / used_weight
+
+
+def _fmt_metric(value):
+    return "N/A" if value is None else f"{float(value):.6f}"
 
 
 def run_eval_ablation_sweep():
@@ -432,10 +455,14 @@ def _write_eval_ablation_report_bundle(summary, summary_path):
                     i,
                     row["name"],
                     f"{row['score']:.6f}",
-                    f"{row['metrics']['cifar10_top1']:.6f}",
-                    f"{row['metrics']['cifar100_top1']:.6f}",
-                    f"{row['metrics']['imagenet_top1']:.6f}",
-                    _make_rel(artifacts["imagenet_val"]["small_output"]),
+                    _fmt_metric(row["metrics"]["cifar10_top1"]),
+                    _fmt_metric(row["metrics"]["cifar100_top1"]),
+                    _fmt_metric(row["metrics"]["imagenet_top1"]),
+                    (
+                        _make_rel(artifacts["imagenet_val"]["small_output"])
+                        if artifacts.get("imagenet_val")
+                        else ""
+                    ),
                     _make_rel(artifacts["cifar10_all"]["small_output"]),
                     _make_rel(artifacts["cifar100_all"]["small_output"]),
                 ]
@@ -475,18 +502,21 @@ def _write_eval_ablation_report_bundle(summary, summary_path):
         for i, row in enumerate(rows, start=1):
             f.write(
                 f"| {i} | `{row['name']}` | {row['score']:.6f} | "
-                f"{row['metrics']['cifar10_top1']:.6f} | "
-                f"{row['metrics']['cifar100_top1']:.6f} | "
-                f"{row['metrics']['imagenet_top1']:.6f} |\n"
+                f"{_fmt_metric(row['metrics']['cifar10_top1'])} | "
+                f"{_fmt_metric(row['metrics']['cifar100_top1'])} | "
+                f"{_fmt_metric(row['metrics']['imagenet_top1'])} |\n"
             )
         f.write("\n## Per-experiment Artifacts\n\n")
         for row in rows:
             a = row["artifact_paths"]
             f.write(f"### `{row['name']}`\n")
-            f.write(f"- ImageNet small JSON: `{_make_rel(a['imagenet_val']['small_output'])}`\n")
+            if a.get("imagenet_val"):
+                f.write(f"- ImageNet small JSON: `{_make_rel(a['imagenet_val']['small_output'])}`\n")
+                f.write(f"- ImageNet review HTML: `{_make_rel(a['imagenet_val']['review_html'])}`\n")
+            else:
+                f.write("- ImageNet artifacts: `N/A (skipped)`\n")
             f.write(f"- CIFAR10 small JSON: `{_make_rel(a['cifar10_all']['small_output'])}`\n")
             f.write(f"- CIFAR100 small JSON: `{_make_rel(a['cifar100_all']['small_output'])}`\n")
-            f.write(f"- ImageNet review HTML: `{_make_rel(a['imagenet_val']['review_html'])}`\n")
             f.write(f"- CIFAR10 review HTML: `{_make_rel(a['cifar10_all']['review_html'])}`\n")
             f.write(f"- CIFAR100 review HTML: `{_make_rel(a['cifar100_all']['review_html'])}`\n\n")
     print(f"Saved eval ablation markdown report to {md_path}")
@@ -499,9 +529,9 @@ def _write_eval_ablation_report_bundle(summary, summary_path):
             f"<td>{i}</td>"
             f"<td><code>{row['name']}</code></td>"
             f"<td>{row['score']:.6f}</td>"
-            f"<td>{row['metrics']['cifar10_top1']:.6f}</td>"
-            f"<td>{row['metrics']['cifar100_top1']:.6f}</td>"
-            f"<td>{row['metrics']['imagenet_top1']:.6f}</td>"
+            f"<td>{_fmt_metric(row['metrics']['cifar10_top1'])}</td>"
+            f"<td>{_fmt_metric(row['metrics']['cifar100_top1'])}</td>"
+            f"<td>{_fmt_metric(row['metrics']['imagenet_top1'])}</td>"
             "</tr>"
         )
     plot_img = (
@@ -623,9 +653,9 @@ def _write_checkpoint_series_report_bundle(summary, summary_path):
                     row["step"],
                     row["checkpoint_name"],
                     f"{row['score']:.6f}",
-                    f"{row['metrics']['cifar10_top1']:.6f}",
-                    f"{row['metrics']['cifar100_top1']:.6f}",
-                    f"{row['metrics']['imagenet_top1']:.6f}",
+                    _fmt_metric(row["metrics"]["cifar10_top1"]),
+                    _fmt_metric(row["metrics"]["cifar100_top1"]),
+                    _fmt_metric(row["metrics"]["imagenet_top1"]),
                 ]
             )
     print(f"Saved checkpoint series CSV to {csv_path}")
@@ -636,12 +666,16 @@ def _write_checkpoint_series_report_bundle(summary, summary_path):
         weighted = [r["score"] for r in rows]
         cifar10 = [r["metrics"]["cifar10_top1"] for r in rows]
         cifar100 = [r["metrics"]["cifar100_top1"] for r in rows]
-        imagenet = [r["metrics"]["imagenet_top1"] for r in rows]
+        imagenet = [r["metrics"]["imagenet_top1"] for r in rows if r["metrics"]["imagenet_top1"] is not None]
         plt.figure(figsize=(10, 5))
         plt.plot(steps, weighted, marker="o", label="weighted_score")
         plt.plot(steps, cifar10, marker="o", label="cifar10_top1")
         plt.plot(steps, cifar100, marker="o", label="cifar100_top1")
-        plt.plot(steps, imagenet, marker="o", label="imagenet_top1")
+        if imagenet:
+            imagenet_steps = [
+                r["step"] for r in rows if r["metrics"]["imagenet_top1"] is not None
+            ]
+            plt.plot(imagenet_steps, imagenet, marker="o", label="imagenet_top1")
         plt.xlabel("Checkpoint step")
         plt.ylabel("Score")
         plt.title("Checkpoint Series Evaluation")
@@ -671,8 +705,8 @@ def _write_checkpoint_series_report_bundle(summary, summary_path):
         for row in rows:
             f.write(
                 f"| {row['step']} | `{row['checkpoint_name']}` | {row['score']:.6f} | "
-                f"{row['metrics']['cifar10_top1']:.6f} | {row['metrics']['cifar100_top1']:.6f} | "
-                f"{row['metrics']['imagenet_top1']:.6f} |\n"
+                f"{_fmt_metric(row['metrics']['cifar10_top1'])} | { _fmt_metric(row['metrics']['cifar100_top1'])} | "
+                f"{_fmt_metric(row['metrics']['imagenet_top1'])} |\n"
             )
     print(f"Saved checkpoint series markdown report to {md_path}")
 
@@ -684,9 +718,9 @@ def _write_checkpoint_series_report_bundle(summary, summary_path):
             f"<td>{row['step']}</td>"
             f"<td><code>{row['checkpoint_name']}</code></td>"
             f"<td>{row['score']:.6f}</td>"
-            f"<td>{row['metrics']['cifar10_top1']:.6f}</td>"
-            f"<td>{row['metrics']['cifar100_top1']:.6f}</td>"
-            f"<td>{row['metrics']['imagenet_top1']:.6f}</td>"
+            f"<td>{_fmt_metric(row['metrics']['cifar10_top1'])}</td>"
+            f"<td>{_fmt_metric(row['metrics']['cifar100_top1'])}</td>"
+            f"<td>{_fmt_metric(row['metrics']['imagenet_top1'])}</td>"
             "</tr>"
         )
     plot_img = (
