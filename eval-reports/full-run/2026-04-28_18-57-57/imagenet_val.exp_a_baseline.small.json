@@ -1,0 +1,1624 @@
+{
+  "dataset": "imagenet_val.exp_a_baseline",
+  "metrics": {
+    "top1_accuracy": 0.991859495639801,
+    "top5_accuracy": 0.9979398846626282,
+    "top10_accuracy": 0.9998399615287781
+  },
+  "num_samples": 49997,
+  "num_misclassified": 407,
+  "top_n": 200,
+  "image_preview_top_n": 10,
+  "misclassified_samples_top_n": [
+    {
+      "sample_index": 204,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.5212368965148926,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000204.png"
+    },
+    {
+      "sample_index": 314,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.07207386195659637,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000314.png"
+    },
+    {
+      "sample_index": 328,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.0856093317270279,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000328.png"
+    },
+    {
+      "sample_index": 449,
+      "true_label_id": 24,
+      "true_label_name": "German shepherd, German shepherd dog, German police dog, alsatian",
+      "predicted_label_id": 278,
+      "predicted_label_name": "malinois",
+      "predicted_confidence": 0.5022071599960327,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000449.png"
+    },
+    {
+      "sample_index": 460,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10154766589403152,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000460.png"
+    },
+    {
+      "sample_index": 813,
+      "true_label_id": 398,
+      "true_label_name": "seashore, coast, seacoast, sea-coast",
+      "predicted_label_id": 386,
+      "predicted_label_name": "sandbar, sand bar",
+      "predicted_confidence": 0.8571410179138184,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000813.png"
+    },
+    {
+      "sample_index": 988,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.11851914972066879,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/000988.png"
+    },
+    {
+      "sample_index": 1076,
+      "true_label_id": 222,
+      "true_label_name": "handkerchief, hankie, hanky, hankey",
+      "predicted_label_id": 182,
+      "predicted_label_name": "envelope",
+      "predicted_confidence": 0.3137959837913513,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/001076.png"
+    },
+    {
+      "sample_index": 1151,
+      "true_label_id": 168,
+      "true_label_name": "dingo, warrigal, warragal, Canis dingo",
+      "predicted_label_id": 82,
+      "predicted_label_name": "basenji",
+      "predicted_confidence": 0.48497316241264343,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/001151.png"
+    },
+    {
+      "sample_index": 1197,
+      "true_label_id": 110,
+      "true_label_name": "brassiere, bra, bandeau",
+      "predicted_label_id": 53,
+      "predicted_label_name": "Windsor tie",
+      "predicted_confidence": 0.628028929233551,
+      "image_preview_path": "imagenet_val.exp_a_baseline.sample_images/001197.png"
+    },
+    {
+      "sample_index": 1247,
+      "true_label_id": 394,
+      "true_label_name": "screwdriver",
+      "predicted_label_id": 120,
+      "predicted_label_name": "can opener, tin opener",
+      "predicted_confidence": 0.7957905530929565
+    },
+    {
+      "sample_index": 1317,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.6700924634933472
+    },
+    {
+      "sample_index": 1401,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.07946065813302994
+    },
+    {
+      "sample_index": 1404,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.5881553888320923
+    },
+    {
+      "sample_index": 1412,
+      "true_label_id": 261,
+      "true_label_name": "ladle",
+      "predicted_label_id": 119,
+      "predicted_label_name": "caldron, cauldron",
+      "predicted_confidence": 0.4717542827129364
+    },
+    {
+      "sample_index": 1557,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.1980627030134201
+    },
+    {
+      "sample_index": 1885,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 19,
+      "predicted_label_name": "Eskimo dog, husky",
+      "predicted_confidence": 0.2525613307952881
+    },
+    {
+      "sample_index": 1941,
+      "true_label_id": 314,
+      "true_label_name": "oil filter",
+      "predicted_label_id": 325,
+      "predicted_label_name": "paper towel",
+      "predicted_confidence": 0.05964847281575203
+    },
+    {
+      "sample_index": 2054,
+      "true_label_id": 484,
+      "true_label_name": "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis",
+      "predicted_label_id": 107,
+      "predicted_label_name": "borzoi, Russian wolfhound",
+      "predicted_confidence": 0.08535750955343246
+    },
+    {
+      "sample_index": 2085,
+      "true_label_id": 482,
+      "true_label_name": "wardrobe, closet, press",
+      "predicted_label_id": 403,
+      "predicted_label_name": "shower curtain",
+      "predicted_confidence": 0.6640962362289429
+    },
+    {
+      "sample_index": 2413,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.11154022812843323
+    },
+    {
+      "sample_index": 2453,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2758355736732483
+    },
+    {
+      "sample_index": 2564,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.4802170395851135
+    },
+    {
+      "sample_index": 2632,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.05688473954796791
+    },
+    {
+      "sample_index": 2685,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 495,
+      "predicted_label_name": "wombat",
+      "predicted_confidence": 0.11942749470472336
+    },
+    {
+      "sample_index": 2766,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.21834197640419006
+    },
+    {
+      "sample_index": 2950,
+      "true_label_id": 110,
+      "true_label_name": "brassiere, bra, bandeau",
+      "predicted_label_id": 53,
+      "predicted_label_name": "Windsor tie",
+      "predicted_confidence": 0.628028929233551
+    },
+    {
+      "sample_index": 3030,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 327,
+      "predicted_label_name": "parking meter",
+      "predicted_confidence": 0.7562102675437927
+    },
+    {
+      "sample_index": 3180,
+      "true_label_id": 2,
+      "true_label_name": "American coot, marsh hen, mud hen, water hen, Fulica americana",
+      "predicted_label_id": 98,
+      "predicted_label_name": "black grouse",
+      "predicted_confidence": 0.14401932060718536
+    },
+    {
+      "sample_index": 3262,
+      "true_label_id": 426,
+      "true_label_name": "strainer",
+      "predicted_label_id": 131,
+      "predicted_label_name": "chain",
+      "predicted_confidence": 0.924588680267334
+    },
+    {
+      "sample_index": 3382,
+      "true_label_id": 261,
+      "true_label_name": "ladle",
+      "predicted_label_id": 357,
+      "predicted_label_name": "projector",
+      "predicted_confidence": 0.3389646112918854
+    },
+    {
+      "sample_index": 3453,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10384362936019897
+    },
+    {
+      "sample_index": 3504,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2909075617790222
+    },
+    {
+      "sample_index": 3555,
+      "true_label_id": 24,
+      "true_label_name": "German shepherd, German shepherd dog, German police dog, alsatian",
+      "predicted_label_id": 278,
+      "predicted_label_name": "malinois",
+      "predicted_confidence": 0.4065804183483124
+    },
+    {
+      "sample_index": 3788,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2613850235939026
+    },
+    {
+      "sample_index": 4156,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.03779500722885132
+    },
+    {
+      "sample_index": 4297,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.37255042791366577
+    },
+    {
+      "sample_index": 4590,
+      "true_label_id": 328,
+      "true_label_name": "passenger car, coach, carriage",
+      "predicted_label_id": 196,
+      "predicted_label_name": "freight car",
+      "predicted_confidence": 0.5917809009552002
+    },
+    {
+      "sample_index": 4631,
+      "true_label_id": 326,
+      "true_label_name": "parachute, chute",
+      "predicted_label_id": 429,
+      "predicted_label_name": "stretcher",
+      "predicted_confidence": 0.6040801405906677
+    },
+    {
+      "sample_index": 4766,
+      "true_label_id": 271,
+      "true_label_name": "lipstick, lip rouge",
+      "predicted_label_id": 297,
+      "predicted_label_name": "modem",
+      "predicted_confidence": 0.1158362478017807
+    },
+    {
+      "sample_index": 4907,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.46984484791755676
+    },
+    {
+      "sample_index": 5121,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10384362936019897
+    },
+    {
+      "sample_index": 5730,
+      "true_label_id": 152,
+      "true_label_name": "convertible",
+      "predicted_label_id": 39,
+      "predicted_label_name": "Model T",
+      "predicted_confidence": 0.954315721988678
+    },
+    {
+      "sample_index": 6148,
+      "true_label_id": 145,
+      "true_label_name": "cocker spaniel, English cocker spaniel, cocker",
+      "predicted_label_id": 18,
+      "predicted_label_name": "English springer, English springer spaniel",
+      "predicted_confidence": 0.49955257773399353
+    },
+    {
+      "sample_index": 6259,
+      "true_label_id": 341,
+      "true_label_name": "pitcher, ewer",
+      "predicted_label_id": 485,
+      "predicted_label_name": "water jug",
+      "predicted_confidence": 0.6098461151123047
+    },
+    {
+      "sample_index": 6295,
+      "true_label_id": 247,
+      "true_label_name": "impala, Aepyceros melampus",
+      "predicted_label_id": 226,
+      "predicted_label_name": "hartebeest",
+      "predicted_confidence": 0.822109580039978
+    },
+    {
+      "sample_index": 6408,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 410,
+      "predicted_label_name": "space heater",
+      "predicted_confidence": 0.4808635711669922
+    },
+    {
+      "sample_index": 6544,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.6065436005592346
+    },
+    {
+      "sample_index": 6688,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.5513039231300354
+    },
+    {
+      "sample_index": 6917,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.11069659143686295
+    },
+    {
+      "sample_index": 6994,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 19,
+      "predicted_label_name": "Eskimo dog, husky",
+      "predicted_confidence": 0.2525613307952881
+    },
+    {
+      "sample_index": 7302,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.7504984140396118
+    },
+    {
+      "sample_index": 7397,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06825201213359833
+    },
+    {
+      "sample_index": 7447,
+      "true_label_id": 123,
+      "true_label_name": "capuchin, ringtail, Cebus capucinus",
+      "predicted_label_id": 243,
+      "predicted_label_name": "howler monkey, howler",
+      "predicted_confidence": 0.6996802687644958
+    },
+    {
+      "sample_index": 7462,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.05741766095161438
+    },
+    {
+      "sample_index": 7724,
+      "true_label_id": 121,
+      "true_label_name": "candle, taper, wax light",
+      "predicted_label_id": 183,
+      "predicted_label_name": "espresso",
+      "predicted_confidence": 0.590728759765625
+    },
+    {
+      "sample_index": 7889,
+      "true_label_id": 225,
+      "true_label_name": "harmonica, mouth organ, harp, mouth harp",
+      "predicted_label_id": 130,
+      "predicted_label_name": "cello, violoncello",
+      "predicted_confidence": 0.34721440076828003
+    },
+    {
+      "sample_index": 7991,
+      "true_label_id": 261,
+      "true_label_name": "ladle",
+      "predicted_label_id": 357,
+      "predicted_label_name": "projector",
+      "predicted_confidence": 0.3389646112918854
+    },
+    {
+      "sample_index": 8027,
+      "true_label_id": 247,
+      "true_label_name": "impala, Aepyceros melampus",
+      "predicted_label_id": 226,
+      "predicted_label_name": "hartebeest",
+      "predicted_confidence": 0.4963027238845825
+    },
+    {
+      "sample_index": 8044,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 243,
+      "predicted_label_name": "howler monkey, howler",
+      "predicted_confidence": 0.07789250463247299
+    },
+    {
+      "sample_index": 8166,
+      "true_label_id": 222,
+      "true_label_name": "handkerchief, hankie, hanky, hankey",
+      "predicted_label_id": 325,
+      "predicted_label_name": "paper towel",
+      "predicted_confidence": 0.37401506304740906
+    },
+    {
+      "sample_index": 8288,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.11154022812843323
+    },
+    {
+      "sample_index": 8834,
+      "true_label_id": 2,
+      "true_label_name": "American coot, marsh hen, mud hen, water hen, Fulica americana",
+      "predicted_label_id": 170,
+      "predicted_label_name": "dowitcher",
+      "predicted_confidence": 0.14224369823932648
+    },
+    {
+      "sample_index": 8909,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.7866262197494507
+    },
+    {
+      "sample_index": 8936,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 305,
+      "predicted_label_name": "mousetrap",
+      "predicted_confidence": 0.8858607411384583
+    },
+    {
+      "sample_index": 9060,
+      "true_label_id": 401,
+      "true_label_name": "shield, buckler",
+      "predicted_label_id": 346,
+      "predicted_label_name": "plow, plough",
+      "predicted_confidence": 0.20750197768211365
+    },
+    {
+      "sample_index": 9241,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.5242346525192261
+    },
+    {
+      "sample_index": 9310,
+      "true_label_id": 489,
+      "true_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_label_id": 29,
+      "predicted_label_name": "Great Pyrenees",
+      "predicted_confidence": 0.31327277421951294
+    },
+    {
+      "sample_index": 9457,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.07010243088006973
+    },
+    {
+      "sample_index": 9545,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.3008344769477844
+    },
+    {
+      "sample_index": 9704,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.7745659351348877
+    },
+    {
+      "sample_index": 9814,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 495,
+      "predicted_label_name": "wombat",
+      "predicted_confidence": 0.11942749470472336
+    },
+    {
+      "sample_index": 10082,
+      "true_label_id": 24,
+      "true_label_name": "German shepherd, German shepherd dog, German police dog, alsatian",
+      "predicted_label_id": 278,
+      "predicted_label_name": "malinois",
+      "predicted_confidence": 0.4065804183483124
+    },
+    {
+      "sample_index": 10534,
+      "true_label_id": 314,
+      "true_label_name": "oil filter",
+      "predicted_label_id": 325,
+      "predicted_label_name": "paper towel",
+      "predicted_confidence": 0.05964847281575203
+    },
+    {
+      "sample_index": 10581,
+      "true_label_id": 489,
+      "true_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_label_id": 260,
+      "predicted_label_name": "kuvasz",
+      "predicted_confidence": 0.6331979036331177
+    },
+    {
+      "sample_index": 10799,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.42269742488861084
+    },
+    {
+      "sample_index": 10828,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 19,
+      "predicted_label_name": "Eskimo dog, husky",
+      "predicted_confidence": 0.5385259985923767
+    },
+    {
+      "sample_index": 10878,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5848642587661743
+    },
+    {
+      "sample_index": 11022,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 495,
+      "predicted_label_name": "wombat",
+      "predicted_confidence": 0.08093870431184769
+    },
+    {
+      "sample_index": 11035,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.24048079550266266
+    },
+    {
+      "sample_index": 11122,
+      "true_label_id": 489,
+      "true_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_label_id": 29,
+      "predicted_label_name": "Great Pyrenees",
+      "predicted_confidence": 0.31327277421951294
+    },
+    {
+      "sample_index": 11131,
+      "true_label_id": 199,
+      "true_label_name": "garden spider, Aranea diademata",
+      "predicted_label_id": 97,
+      "predicted_label_name": "black and gold garden spider, Argiope aurantia",
+      "predicted_confidence": 0.5848642587661743
+    },
+    {
+      "sample_index": 11148,
+      "true_label_id": 222,
+      "true_label_name": "handkerchief, hankie, hanky, hankey",
+      "predicted_label_id": 182,
+      "predicted_label_name": "envelope",
+      "predicted_confidence": 0.3137959837913513
+    },
+    {
+      "sample_index": 11210,
+      "true_label_id": 77,
+      "true_label_name": "bannister, banister, balustrade, balusters, handrail",
+      "predicted_label_id": 206,
+      "predicted_label_name": "gondola",
+      "predicted_confidence": 0.7045217156410217
+    },
+    {
+      "sample_index": 11426,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.46984484791755676
+    },
+    {
+      "sample_index": 11453,
+      "true_label_id": 152,
+      "true_label_name": "convertible",
+      "predicted_label_id": 39,
+      "predicted_label_name": "Model T",
+      "predicted_confidence": 0.954315721988678
+    },
+    {
+      "sample_index": 11493,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.43262815475463867
+    },
+    {
+      "sample_index": 11520,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.058906592428684235
+    },
+    {
+      "sample_index": 11568,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.05741766095161438
+    },
+    {
+      "sample_index": 11733,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10269508510828018
+    },
+    {
+      "sample_index": 11857,
+      "true_label_id": 142,
+      "true_label_name": "cliff, drop, drop-off",
+      "predicted_label_id": 303,
+      "predicted_label_name": "mountain bike, all-terrain bike, off-roader",
+      "predicted_confidence": 0.581290602684021
+    },
+    {
+      "sample_index": 11937,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.31506988406181335
+    },
+    {
+      "sample_index": 11973,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.08757511526346207
+    },
+    {
+      "sample_index": 12022,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06658961623907089
+    },
+    {
+      "sample_index": 12083,
+      "true_label_id": 24,
+      "true_label_name": "German shepherd, German shepherd dog, German police dog, alsatian",
+      "predicted_label_id": 278,
+      "predicted_label_name": "malinois",
+      "predicted_confidence": 0.43456795811653137
+    },
+    {
+      "sample_index": 12381,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.6656526327133179
+    },
+    {
+      "sample_index": 12510,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.08007177710533142
+    },
+    {
+      "sample_index": 12614,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06658961623907089
+    },
+    {
+      "sample_index": 12640,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.43262815475463867
+    },
+    {
+      "sample_index": 13064,
+      "true_label_id": 2,
+      "true_label_name": "American coot, marsh hen, mud hen, water hen, Fulica americana",
+      "predicted_label_id": 170,
+      "predicted_label_name": "dowitcher",
+      "predicted_confidence": 0.1790408343076706
+    },
+    {
+      "sample_index": 13117,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.4855871796607971
+    },
+    {
+      "sample_index": 13225,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.1600111871957779
+    },
+    {
+      "sample_index": 13396,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.4434738755226135
+    },
+    {
+      "sample_index": 13494,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.21834197640419006
+    },
+    {
+      "sample_index": 13504,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.12037864327430725
+    },
+    {
+      "sample_index": 13553,
+      "true_label_id": 74,
+      "true_label_name": "balance beam, beam",
+      "predicted_label_id": 238,
+      "predicted_label_name": "horizontal bar, high bar",
+      "predicted_confidence": 0.9952570796012878
+    },
+    {
+      "sample_index": 13610,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.1600111871957779
+    },
+    {
+      "sample_index": 13656,
+      "true_label_id": 484,
+      "true_label_name": "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis",
+      "predicted_label_id": 95,
+      "predicted_label_name": "bison",
+      "predicted_confidence": 0.3138895332813263
+    },
+    {
+      "sample_index": 13726,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06391558051109314
+    },
+    {
+      "sample_index": 13750,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06362076103687286
+    },
+    {
+      "sample_index": 13777,
+      "true_label_id": 383,
+      "true_label_name": "ruffed grouse, partridge, Bonasa umbellus",
+      "predicted_label_id": 98,
+      "predicted_label_name": "black grouse",
+      "predicted_confidence": 0.5881056189537048
+    },
+    {
+      "sample_index": 13854,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 495,
+      "predicted_label_name": "wombat",
+      "predicted_confidence": 0.08093870431184769
+    },
+    {
+      "sample_index": 13915,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.1980627030134201
+    },
+    {
+      "sample_index": 14106,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10836680233478546
+    },
+    {
+      "sample_index": 14241,
+      "true_label_id": 401,
+      "true_label_name": "shield, buckler",
+      "predicted_label_id": 387,
+      "predicted_label_name": "scabbard",
+      "predicted_confidence": 0.8223015666007996
+    },
+    {
+      "sample_index": 14366,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06391558051109314
+    },
+    {
+      "sample_index": 14625,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.5323062539100647
+    },
+    {
+      "sample_index": 14679,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.11069659143686295
+    },
+    {
+      "sample_index": 14695,
+      "true_label_id": 484,
+      "true_label_name": "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis",
+      "predicted_label_id": 240,
+      "predicted_label_name": "horse cart, horse-cart",
+      "predicted_confidence": 0.350052148103714
+    },
+    {
+      "sample_index": 14752,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10269508510828018
+    },
+    {
+      "sample_index": 14883,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2750343382358551
+    },
+    {
+      "sample_index": 14996,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10269508510828018
+    },
+    {
+      "sample_index": 15064,
+      "true_label_id": 247,
+      "true_label_name": "impala, Aepyceros melampus",
+      "predicted_label_id": 226,
+      "predicted_label_name": "hartebeest",
+      "predicted_confidence": 0.4963027238845825
+    },
+    {
+      "sample_index": 15094,
+      "true_label_id": 123,
+      "true_label_name": "capuchin, ringtail, Cebus capucinus",
+      "predicted_label_id": 243,
+      "predicted_label_name": "howler monkey, howler",
+      "predicted_confidence": 0.6996802687644958
+    },
+    {
+      "sample_index": 15541,
+      "true_label_id": 118,
+      "true_label_name": "cab, hack, taxi, taxicab",
+      "predicted_label_id": 327,
+      "predicted_label_name": "parking meter",
+      "predicted_confidence": 0.14379647374153137
+    },
+    {
+      "sample_index": 15552,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2758355736732483
+    },
+    {
+      "sample_index": 15861,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 327,
+      "predicted_label_name": "parking meter",
+      "predicted_confidence": 0.7562102675437927
+    },
+    {
+      "sample_index": 15906,
+      "true_label_id": 142,
+      "true_label_name": "cliff, drop, drop-off",
+      "predicted_label_id": 303,
+      "predicted_label_name": "mountain bike, all-terrain bike, off-roader",
+      "predicted_confidence": 0.581290602684021
+    },
+    {
+      "sample_index": 16251,
+      "true_label_id": 398,
+      "true_label_name": "seashore, coast, seacoast, sea-coast",
+      "predicted_label_id": 386,
+      "predicted_label_name": "sandbar, sand bar",
+      "predicted_confidence": 0.6157858967781067
+    },
+    {
+      "sample_index": 16365,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.21834197640419006
+    },
+    {
+      "sample_index": 16558,
+      "true_label_id": 213,
+      "true_label_name": "greenhouse, nursery, glasshouse",
+      "predicted_label_id": 491,
+      "predicted_label_name": "window shade",
+      "predicted_confidence": 0.6375982761383057
+    },
+    {
+      "sample_index": 16685,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 19,
+      "predicted_label_name": "Eskimo dog, husky",
+      "predicted_confidence": 0.5385259985923767
+    },
+    {
+      "sample_index": 16834,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2613850235939026
+    },
+    {
+      "sample_index": 16904,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.15103107690811157
+    },
+    {
+      "sample_index": 16973,
+      "true_label_id": 225,
+      "true_label_name": "harmonica, mouth organ, harp, mouth harp",
+      "predicted_label_id": 130,
+      "predicted_label_name": "cello, violoncello",
+      "predicted_confidence": 0.34721440076828003
+    },
+    {
+      "sample_index": 17057,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.4802170395851135
+    },
+    {
+      "sample_index": 17558,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.21881304681301117
+    },
+    {
+      "sample_index": 17639,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.1865180879831314
+    },
+    {
+      "sample_index": 17644,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2222222238779068
+    },
+    {
+      "sample_index": 17800,
+      "true_label_id": 484,
+      "true_label_name": "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis",
+      "predicted_label_id": 107,
+      "predicted_label_name": "borzoi, Russian wolfhound",
+      "predicted_confidence": 0.08535750955343246
+    },
+    {
+      "sample_index": 17896,
+      "true_label_id": 484,
+      "true_label_name": "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis",
+      "predicted_label_id": 95,
+      "predicted_label_name": "bison",
+      "predicted_confidence": 0.5058600306510925
+    },
+    {
+      "sample_index": 17913,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.42524823546409607
+    },
+    {
+      "sample_index": 17922,
+      "true_label_id": 2,
+      "true_label_name": "American coot, marsh hen, mud hen, water hen, Fulica americana",
+      "predicted_label_id": 320,
+      "predicted_label_name": "oystercatcher, oyster catcher",
+      "predicted_confidence": 0.1667858362197876
+    },
+    {
+      "sample_index": 17961,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.1106933206319809
+    },
+    {
+      "sample_index": 18464,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.44739627838134766
+    },
+    {
+      "sample_index": 18608,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06391558051109314
+    },
+    {
+      "sample_index": 18658,
+      "true_label_id": 24,
+      "true_label_name": "German shepherd, German shepherd dog, German police dog, alsatian",
+      "predicted_label_id": 278,
+      "predicted_label_name": "malinois",
+      "predicted_confidence": 0.4065804183483124
+    },
+    {
+      "sample_index": 18693,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.43262815475463867
+    },
+    {
+      "sample_index": 19044,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 243,
+      "predicted_label_name": "howler monkey, howler",
+      "predicted_confidence": 0.09952612221240997
+    },
+    {
+      "sample_index": 19066,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.14002381265163422
+    },
+    {
+      "sample_index": 19138,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.5881553888320923
+    },
+    {
+      "sample_index": 19424,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.03779500722885132
+    },
+    {
+      "sample_index": 19564,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 305,
+      "predicted_label_name": "mousetrap",
+      "predicted_confidence": 0.8858607411384583
+    },
+    {
+      "sample_index": 19692,
+      "true_label_id": 2,
+      "true_label_name": "American coot, marsh hen, mud hen, water hen, Fulica americana",
+      "predicted_label_id": 207,
+      "predicted_label_name": "goose",
+      "predicted_confidence": 0.1876165121793747
+    },
+    {
+      "sample_index": 19797,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.11459051817655563
+    },
+    {
+      "sample_index": 19804,
+      "true_label_id": 142,
+      "true_label_name": "cliff, drop, drop-off",
+      "predicted_label_id": 479,
+      "predicted_label_name": "volcano",
+      "predicted_confidence": 0.7750949263572693
+    },
+    {
+      "sample_index": 19820,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06559544056653976
+    },
+    {
+      "sample_index": 20029,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06391558051109314
+    },
+    {
+      "sample_index": 20138,
+      "true_label_id": 211,
+      "true_label_name": "green lizard, Lacerta viridis",
+      "predicted_label_id": 1,
+      "predicted_label_name": "American chameleon, anole, Anolis carolinensis",
+      "predicted_confidence": 0.7504984140396118
+    },
+    {
+      "sample_index": 20201,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.4818377196788788
+    },
+    {
+      "sample_index": 20387,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.6721857190132141
+    },
+    {
+      "sample_index": 20406,
+      "true_label_id": 173,
+      "true_label_name": "drum, membranophone, tympan",
+      "predicted_label_id": 76,
+      "predicted_label_name": "banjo",
+      "predicted_confidence": 0.6245839595794678
+    },
+    {
+      "sample_index": 20526,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.06391558051109314
+    },
+    {
+      "sample_index": 20559,
+      "true_label_id": 121,
+      "true_label_name": "candle, taper, wax light",
+      "predicted_label_id": 183,
+      "predicted_label_name": "espresso",
+      "predicted_confidence": 0.590728759765625
+    },
+    {
+      "sample_index": 20596,
+      "true_label_id": 24,
+      "true_label_name": "German shepherd, German shepherd dog, German police dog, alsatian",
+      "predicted_label_id": 278,
+      "predicted_label_name": "malinois",
+      "predicted_confidence": 0.8476086854934692
+    },
+    {
+      "sample_index": 21065,
+      "true_label_id": 349,
+      "true_label_name": "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria",
+      "predicted_label_id": 66,
+      "predicted_label_name": "ambulance",
+      "predicted_confidence": 0.6065436005592346
+    },
+    {
+      "sample_index": 21286,
+      "true_label_id": 489,
+      "true_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_label_id": 29,
+      "predicted_label_name": "Great Pyrenees",
+      "predicted_confidence": 0.8002979755401611
+    },
+    {
+      "sample_index": 21485,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.21881304681301117
+    },
+    {
+      "sample_index": 21567,
+      "true_label_id": 225,
+      "true_label_name": "harmonica, mouth organ, harp, mouth harp",
+      "predicted_label_id": 130,
+      "predicted_label_name": "cello, violoncello",
+      "predicted_confidence": 0.34721440076828003
+    },
+    {
+      "sample_index": 21747,
+      "true_label_id": 449,
+      "true_label_name": "thunder snake, worm snake, Carphophis amoenus",
+      "predicted_label_id": 64,
+      "predicted_label_name": "alligator lizard",
+      "predicted_confidence": 0.4563477337360382
+    },
+    {
+      "sample_index": 21852,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.10384362936019897
+    },
+    {
+      "sample_index": 22051,
+      "true_label_id": 398,
+      "true_label_name": "seashore, coast, seacoast, sea-coast",
+      "predicted_label_id": 386,
+      "predicted_label_name": "sandbar, sand bar",
+      "predicted_confidence": 0.6721740961074829
+    },
+    {
+      "sample_index": 22276,
+      "true_label_id": 341,
+      "true_label_name": "pitcher, ewer",
+      "predicted_label_id": 485,
+      "predicted_label_name": "water jug",
+      "predicted_confidence": 0.5646467804908752
+    },
+    {
+      "sample_index": 22488,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 19,
+      "predicted_label_name": "Eskimo dog, husky",
+      "predicted_confidence": 0.47049009799957275
+    },
+    {
+      "sample_index": 22600,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2222222238779068
+    },
+    {
+      "sample_index": 22782,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 495,
+      "predicted_label_name": "wombat",
+      "predicted_confidence": 0.1900085061788559
+    },
+    {
+      "sample_index": 23203,
+      "true_label_id": 271,
+      "true_label_name": "lipstick, lip rouge",
+      "predicted_label_id": 297,
+      "predicted_label_name": "modem",
+      "predicted_confidence": 0.1158362478017807
+    },
+    {
+      "sample_index": 23501,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.24640528857707977
+    },
+    {
+      "sample_index": 23525,
+      "true_label_id": 398,
+      "true_label_name": "seashore, coast, seacoast, sea-coast",
+      "predicted_label_id": 386,
+      "predicted_label_name": "sandbar, sand bar",
+      "predicted_confidence": 0.6721740961074829
+    },
+    {
+      "sample_index": 23553,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.6721857190132141
+    },
+    {
+      "sample_index": 24000,
+      "true_label_id": 489,
+      "true_label_name": "white wolf, Arctic wolf, Canis lupus tundrarum",
+      "predicted_label_id": 29,
+      "predicted_label_name": "Great Pyrenees",
+      "predicted_confidence": 0.31327277421951294
+    },
+    {
+      "sample_index": 24068,
+      "true_label_id": 2,
+      "true_label_name": "American coot, marsh hen, mud hen, water hen, Fulica americana",
+      "predicted_label_id": 170,
+      "predicted_label_name": "dowitcher",
+      "predicted_confidence": 0.13745693862438202
+    },
+    {
+      "sample_index": 24076,
+      "true_label_id": 341,
+      "true_label_name": "pitcher, ewer",
+      "predicted_label_id": 485,
+      "predicted_label_name": "water jug",
+      "predicted_confidence": 0.6098461151123047
+    },
+    {
+      "sample_index": 24206,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.07104947417974472
+    },
+    {
+      "sample_index": 24247,
+      "true_label_id": 247,
+      "true_label_name": "impala, Aepyceros melampus",
+      "predicted_label_id": 226,
+      "predicted_label_name": "hartebeest",
+      "predicted_confidence": 0.4963027238845825
+    },
+    {
+      "sample_index": 24470,
+      "true_label_id": 383,
+      "true_label_name": "ruffed grouse, partridge, Bonasa umbellus",
+      "predicted_label_id": 98,
+      "predicted_label_name": "black grouse",
+      "predicted_confidence": 0.5881056189537048
+    },
+    {
+      "sample_index": 24542,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.05741766095161438
+    },
+    {
+      "sample_index": 24754,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 410,
+      "predicted_label_name": "space heater",
+      "predicted_confidence": 0.4808635711669922
+    },
+    {
+      "sample_index": 25125,
+      "true_label_id": 247,
+      "true_label_name": "impala, Aepyceros melampus",
+      "predicted_label_id": 226,
+      "predicted_label_name": "hartebeest",
+      "predicted_confidence": 0.822109580039978
+    },
+    {
+      "sample_index": 25257,
+      "true_label_id": 482,
+      "true_label_name": "wardrobe, closet, press",
+      "predicted_label_id": 403,
+      "predicted_label_name": "shower curtain",
+      "predicted_confidence": 0.6640962362289429
+    },
+    {
+      "sample_index": 25751,
+      "true_label_id": 233,
+      "true_label_name": "hog, pig, grunter, squealer, Sus scrofa",
+      "predicted_label_id": 254,
+      "predicted_label_name": "kelpie",
+      "predicted_confidence": 0.13591592013835907
+    },
+    {
+      "sample_index": 26125,
+      "true_label_id": 70,
+      "true_label_name": "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",
+      "predicted_label_id": 410,
+      "predicted_label_name": "space heater",
+      "predicted_confidence": 0.4808635711669922
+    },
+    {
+      "sample_index": 26134,
+      "true_label_id": 427,
+      "true_label_name": "street sign",
+      "predicted_label_id": 391,
+      "predicted_label_name": "scoreboard",
+      "predicted_confidence": 0.9736459255218506
+    },
+    {
+      "sample_index": 26187,
+      "true_label_id": 167,
+      "true_label_name": "diaper, nappy, napkin",
+      "predicted_label_id": 456,
+      "predicted_label_name": "toilet tissue, toilet paper, bathroom tissue",
+      "predicted_confidence": 0.35990962386131287
+    },
+    {
+      "sample_index": 26226,
+      "true_label_id": 398,
+      "true_label_name": "seashore, coast, seacoast, sea-coast",
+      "predicted_label_id": 386,
+      "predicted_label_name": "sandbar, sand bar",
+      "predicted_confidence": 0.6721740961074829
+    },
+    {
+      "sample_index": 26329,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.5212368965148926
+    },
+    {
+      "sample_index": 26428,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.7745659351348877
+    },
+    {
+      "sample_index": 26786,
+      "true_label_id": 369,
+      "true_label_name": "red wolf, maned wolf, Canis rufus, Canis niger",
+      "predicted_label_id": 72,
+      "predicted_label_name": "badger",
+      "predicted_confidence": 0.9126636981964111
+    },
+    {
+      "sample_index": 26800,
+      "true_label_id": 148,
+      "true_label_name": "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch",
+      "predicted_label_id": 432,
+      "predicted_label_name": "sturgeon",
+      "predicted_confidence": 0.2758355736732483
+    },
+    {
+      "sample_index": 27059,
+      "true_label_id": 453,
+      "true_label_name": "timber wolf, grey wolf, gray wolf, Canis lupus",
+      "predicted_label_id": 19,
+      "predicted_label_name": "Eskimo dog, husky",
+      "predicted_confidence": 0.2525613307952881
+    }
+  ]
+}
