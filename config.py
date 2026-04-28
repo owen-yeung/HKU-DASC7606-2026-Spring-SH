@@ -63,22 +63,14 @@ class Config:
         "a small {} in a scene.",
         "a photo of a distant {}.",
     ]
-    # Template weighting for inference-time prompt ensembling.
-    # Set to [] to fall back to uniform averaging.
-    EVAL_TEMPLATE_WEIGHTS = [2.0, 1.2, 1.2, 1.0, 1.1, 1.0, 0.9, 1.0, 1.1, 1.0]
+    # Best completed A-C ablation recipe: prompt pack only (B/C tie).
+    # Keep template pack, disable TTA, and disable non-uniform template weighting.
+    EVAL_TEMPLATE_WEIGHTS = []
     # Optional class-specific aliases used only at prediction time.
-    TESTSET_CLASS_PROMPT_VARIANTS = {
-        "dam, dike, dyke": ["hydroelectric dam", "concrete dam wall"],
-        "corn": ["corn cob", "maize ear"],
-        "screen, CRT screen": ["computer monitor", "display screen"],
-        "plane, carpenter's plane, woodworking plane": ["woodworking hand plane"],
-        "pop bottle, soda bottle": ["plastic soda bottle", "soft drink bottle"],
-        "warplane, military plane": ["fighter jet", "military aircraft"],
-        "desktop computer": ["personal computer", "computer tower setup"],
-    }
+    TESTSET_CLASS_PROMPT_VARIANTS = {}
     # Deterministic TTA views applied at prediction time.
-    PRED_ENABLE_TTA = True
-    PRED_TTA_MODES = ["base", "hflip", "center_zoom_90", "center_zoom_80"]
+    PRED_ENABLE_TTA = False
+    PRED_TTA_MODES = ["base"]
     # Optional ablation runner outputs.
     PRED_RUN_ABLATIONS = False
     PRED_ABLATION_OUTPUT_DIR = "./eval-reports/testset-ablation"
@@ -86,8 +78,8 @@ class Config:
     EVAL_PUSHABLE_DIR = "./eval-reports/full-run"
     EVAL_PUSHABLE_TOP_N = 200
     # Shared classification recipe knobs for eval/predict consistency.
-    EVAL_ENABLE_TTA = True
-    EVAL_TTA_MODES = ["base", "hflip", "center_zoom_90", "center_zoom_80"]
+    EVAL_ENABLE_TTA = False
+    EVAL_TTA_MODES = ["base"]
     EVAL_CLASS_PROMPT_VARIANTS = {}
     # Optional ablation sweep over eval datasets (ImageNet/CIFAR).
     EVAL_RUN_ABLATIONS = False
