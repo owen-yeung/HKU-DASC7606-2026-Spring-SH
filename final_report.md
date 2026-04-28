@@ -88,6 +88,22 @@ From `eval-reports/full-run/2026-04-28_11-37-00`:
 
 Interpretation: the model is very strong on ImageNet-style evaluation but still weak on CIFAR transfer, motivating prompt/TTA/recipe ablations and checkpoint-series analysis.
 
+### 2.3 Eval Comparison Table (Requested Setups)
+
+The table below compares the four requested settings:
+
+- Pretrained weights, no prompt-pack (from `eval-reports/2026-04-27_12-40-55`)
+- Final fine-tuned weights, no prompt-pack (Exp A)
+- Final fine-tuned weights, prompt-pack (Exp B)
+- Final fine-tuned weights, Exp C
+
+| Setup | CIFAR-10 Top-1 | CIFAR-100 Top-1 | CIFAR-10 Top-2 / Top-3 | CIFAR-100 Top-5 / Top-10 |
+|---|---:|---:|---:|---:|
+| Pretrained weights, no prompt-pack | 0.1462 | 0.0103 | 0.2770 / 0.3971 | 0.0561 / 0.1091 |
+| Final weights, Exp A (no prompt-pack) | 0.4290 | 0.1161 | 0.6110 / 0.7180 | 0.2778 / 0.3905 |
+| Final weights, Exp B (with prompt-pack) | 0.4379 | 0.1208 | 0.6226 / 0.7304 | 0.2853 / 0.3988 |
+| Final weights, Exp C | 0.4379 | 0.1208 | 0.6226 / 0.7304 | 0.2853 / 0.3988 |
+
 ## 3) Evaluation and Reporting Pipeline
 
 ### 3.1 Eval Artifacts Per Dataset
