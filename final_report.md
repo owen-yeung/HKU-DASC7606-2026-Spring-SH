@@ -29,17 +29,13 @@ This section summarizes the major design decisions made in this project and the 
 
 ### 1.3 Ablation Experiments
 
-- **A->E ablation ladder** was implemented to isolate incremental gains:
+- **A->C ablation ladder** was implemented to isolate incremental gains:
   - **Exp A:** baseline templates
   - **Exp B:** expanded prompt pack
   - **Exp C:** class-aware prompt variants
-  - **Exp D:** add deterministic TTA
-  - **Exp E:** add template weighting
 - **Recipe dimensions being ablated:**
   - prompt template set
   - class-specific aliases
-  - template weights
-  - TTA views (`base`, `hflip`, `center_zoom_90`, `center_zoom_80`)
 - **Selection criterion:** weighted score in `eval.py` based on top-1 metrics:
   - default weights: CIFAR-10 `0.4`, CIFAR-100 `0.4`, ImageNet `0.2`
   - if ImageNet is skipped, score is automatically re-normalized over available metrics.
@@ -54,6 +50,19 @@ This section summarizes the major design decisions made in this project and the 
   - `eval.py --run-checkpoint-series` evaluates all `checkpoint-*` models using the best ablation recipe from an ablation summary, enabling training-time performance trajectory analysis.
 - **Runtime flexibility:**
   - `--skip-imagenet` allows faster CIFAR-only sweeps/series.
+
+### 1.5 Final Ablation Choice and Rationale
+
+Due to runtime constraints, we selected the final recipe from completed **A-C** results only.
+
+- We skipped ImageNet in ablation scoring for speed because:
+  - ImageNet adds substantial runtime to every ablation pass.
+  - Baseline ImageNet performance was already near saturation (top-1 about `0.9986`), so the expected marginal gain from prompt-level ablations was low.
+- CIFAR-only weighted scores from completed sweep (`2026-04-28_19-16-08`):
+  - **Exp A (baseline):** score `0.2725` (CIFAR10 `0.4290`, CIFAR100 `0.1161`)
+  - **Exp B (prompt pack):** score `0.2793` (CIFAR10 `0.4379`, CIFAR100 `0.1208`)
+  - **Exp C (class-aware):** score `0.2793` (CIFAR10 `0.4379`, CIFAR100 `0.1208`)
+- Final selected setup: **prompt-pack recipe without extra TTA/weighting** (B/C tie, with simpler config preferred).
 
 ## 2) Current Training and Evaluation Snapshot
 
