@@ -1,0 +1,1624 @@
+{
+  "dataset": "cifar100_all",
+  "metrics": {
+    "top1_accuracy": 0.11606666445732117,
+    "top5_accuracy": 0.27783334255218506,
+    "top10_accuracy": 0.39053332805633545
+  },
+  "num_samples": 60000,
+  "num_misclassified": 53036,
+  "top_n": 200,
+  "image_preview_top_n": 10,
+  "misclassified_samples_top_n": [
+    {
+      "sample_index": 0,
+      "true_label_id": 19,
+      "true_label_name": "cattle",
+      "predicted_label_id": 11,
+      "predicted_label_name": "boy",
+      "predicted_confidence": 0.1430789679288864,
+      "image_preview_path": "cifar100_all.sample_images/000000.png"
+    },
+    {
+      "sample_index": 1,
+      "true_label_id": 29,
+      "true_label_name": "dinosaur",
+      "predicted_label_id": 78,
+      "predicted_label_name": "snake",
+      "predicted_confidence": 0.08249340951442719,
+      "image_preview_path": "cifar100_all.sample_images/000001.png"
+    },
+    {
+      "sample_index": 2,
+      "true_label_id": 0,
+      "true_label_name": "apple",
+      "predicted_label_id": 70,
+      "predicted_label_name": "rose",
+      "predicted_confidence": 0.10533435642719269,
+      "image_preview_path": "cifar100_all.sample_images/000002.png"
+    },
+    {
+      "sample_index": 3,
+      "true_label_id": 11,
+      "true_label_name": "boy",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.17239150404930115,
+      "image_preview_path": "cifar100_all.sample_images/000003.png"
+    },
+    {
+      "sample_index": 4,
+      "true_label_id": 1,
+      "true_label_name": "aquarium_fish",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.25064510107040405,
+      "image_preview_path": "cifar100_all.sample_images/000004.png"
+    },
+    {
+      "sample_index": 5,
+      "true_label_id": 86,
+      "true_label_name": "telephone",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.2600788176059723,
+      "image_preview_path": "cifar100_all.sample_images/000005.png"
+    },
+    {
+      "sample_index": 6,
+      "true_label_id": 90,
+      "true_label_name": "train",
+      "predicted_label_id": 86,
+      "predicted_label_name": "telephone",
+      "predicted_confidence": 0.0961577445268631,
+      "image_preview_path": "cifar100_all.sample_images/000006.png"
+    },
+    {
+      "sample_index": 8,
+      "true_label_id": 23,
+      "true_label_name": "cloud",
+      "predicted_label_id": 40,
+      "predicted_label_name": "lamp",
+      "predicted_confidence": 0.2906337380409241,
+      "image_preview_path": "cifar100_all.sample_images/000008.png"
+    },
+    {
+      "sample_index": 9,
+      "true_label_id": 31,
+      "true_label_name": "elephant",
+      "predicted_label_id": 38,
+      "predicted_label_name": "kangaroo",
+      "predicted_confidence": 0.34342390298843384,
+      "image_preview_path": "cifar100_all.sample_images/000009.png"
+    },
+    {
+      "sample_index": 10,
+      "true_label_id": 39,
+      "true_label_name": "keyboard",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.25381365418434143,
+      "image_preview_path": "cifar100_all.sample_images/000010.png"
+    },
+    {
+      "sample_index": 11,
+      "true_label_id": 96,
+      "true_label_name": "willow_tree",
+      "predicted_label_id": 11,
+      "predicted_label_name": "boy",
+      "predicted_confidence": 0.5020021796226501
+    },
+    {
+      "sample_index": 12,
+      "true_label_id": 82,
+      "true_label_name": "sunflower",
+      "predicted_label_id": 62,
+      "predicted_label_name": "poppy",
+      "predicted_confidence": 0.2900848686695099
+    },
+    {
+      "sample_index": 13,
+      "true_label_id": 17,
+      "true_label_name": "castle",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.26213985681533813
+    },
+    {
+      "sample_index": 14,
+      "true_label_id": 71,
+      "true_label_name": "sea",
+      "predicted_label_id": 17,
+      "predicted_label_name": "castle",
+      "predicted_confidence": 0.08508668839931488
+    },
+    {
+      "sample_index": 15,
+      "true_label_id": 39,
+      "true_label_name": "keyboard",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.12700921297073364
+    },
+    {
+      "sample_index": 16,
+      "true_label_id": 8,
+      "true_label_name": "bicycle",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.15127471089363098
+    },
+    {
+      "sample_index": 17,
+      "true_label_id": 97,
+      "true_label_name": "wolf",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.17773455381393433
+    },
+    {
+      "sample_index": 18,
+      "true_label_id": 80,
+      "true_label_name": "squirrel",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.13823720812797546
+    },
+    {
+      "sample_index": 20,
+      "true_label_id": 74,
+      "true_label_name": "shrew",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.12581337988376617
+    },
+    {
+      "sample_index": 21,
+      "true_label_id": 59,
+      "true_label_name": "pine_tree",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.06786701828241348
+    },
+    {
+      "sample_index": 22,
+      "true_label_id": 70,
+      "true_label_name": "rose",
+      "predicted_label_id": 97,
+      "predicted_label_name": "wolf",
+      "predicted_confidence": 0.1000385656952858
+    },
+    {
+      "sample_index": 23,
+      "true_label_id": 87,
+      "true_label_name": "television",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.06418707966804504
+    },
+    {
+      "sample_index": 24,
+      "true_label_id": 59,
+      "true_label_name": "pine_tree",
+      "predicted_label_id": 30,
+      "predicted_label_name": "dolphin",
+      "predicted_confidence": 0.08543772250413895
+    },
+    {
+      "sample_index": 25,
+      "true_label_id": 84,
+      "true_label_name": "table",
+      "predicted_label_id": 69,
+      "predicted_label_name": "rocket",
+      "predicted_confidence": 0.11307016015052795
+    },
+    {
+      "sample_index": 26,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.21509309113025665
+    },
+    {
+      "sample_index": 27,
+      "true_label_id": 52,
+      "true_label_name": "oak_tree",
+      "predicted_label_id": 82,
+      "predicted_label_name": "sunflower",
+      "predicted_confidence": 0.10370291024446487
+    },
+    {
+      "sample_index": 28,
+      "true_label_id": 42,
+      "true_label_name": "leopard",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.1740877628326416
+    },
+    {
+      "sample_index": 29,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.07721284031867981
+    },
+    {
+      "sample_index": 30,
+      "true_label_id": 8,
+      "true_label_name": "bicycle",
+      "predicted_label_id": 17,
+      "predicted_label_name": "castle",
+      "predicted_confidence": 0.19372183084487915
+    },
+    {
+      "sample_index": 31,
+      "true_label_id": 17,
+      "true_label_name": "castle",
+      "predicted_label_id": 90,
+      "predicted_label_name": "train",
+      "predicted_confidence": 0.7294726371765137
+    },
+    {
+      "sample_index": 32,
+      "true_label_id": 47,
+      "true_label_name": "maple_tree",
+      "predicted_label_id": 31,
+      "predicted_label_name": "elephant",
+      "predicted_confidence": 0.06735537201166153
+    },
+    {
+      "sample_index": 33,
+      "true_label_id": 65,
+      "true_label_name": "rabbit",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.09013179689645767
+    },
+    {
+      "sample_index": 35,
+      "true_label_id": 22,
+      "true_label_name": "clock",
+      "predicted_label_id": 17,
+      "predicted_label_name": "castle",
+      "predicted_confidence": 0.48097220063209534
+    },
+    {
+      "sample_index": 36,
+      "true_label_id": 81,
+      "true_label_name": "streetcar",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.27767708897590637
+    },
+    {
+      "sample_index": 37,
+      "true_label_id": 11,
+      "true_label_name": "boy",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.1808372586965561
+    },
+    {
+      "sample_index": 38,
+      "true_label_id": 24,
+      "true_label_name": "cockroach",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.19224056601524353
+    },
+    {
+      "sample_index": 39,
+      "true_label_id": 84,
+      "true_label_name": "table",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.3338925540447235
+    },
+    {
+      "sample_index": 40,
+      "true_label_id": 78,
+      "true_label_name": "snake",
+      "predicted_label_id": 39,
+      "predicted_label_name": "keyboard",
+      "predicted_confidence": 0.1103253960609436
+    },
+    {
+      "sample_index": 41,
+      "true_label_id": 45,
+      "true_label_name": "lobster",
+      "predicted_label_id": 31,
+      "predicted_label_name": "elephant",
+      "predicted_confidence": 0.10111473500728607
+    },
+    {
+      "sample_index": 42,
+      "true_label_id": 49,
+      "true_label_name": "mountain",
+      "predicted_label_id": 15,
+      "predicted_label_name": "camel",
+      "predicted_confidence": 0.2475162297487259
+    },
+    {
+      "sample_index": 43,
+      "true_label_id": 97,
+      "true_label_name": "wolf",
+      "predicted_label_id": 99,
+      "predicted_label_name": "worm",
+      "predicted_confidence": 0.07468219101428986
+    },
+    {
+      "sample_index": 44,
+      "true_label_id": 56,
+      "true_label_name": "palm_tree",
+      "predicted_label_id": 16,
+      "predicted_label_name": "can",
+      "predicted_confidence": 0.07913536578416824
+    },
+    {
+      "sample_index": 45,
+      "true_label_id": 76,
+      "true_label_name": "skyscraper",
+      "predicted_label_id": 69,
+      "predicted_label_name": "rocket",
+      "predicted_confidence": 0.24421003460884094
+    },
+    {
+      "sample_index": 46,
+      "true_label_id": 11,
+      "true_label_name": "boy",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.14920629560947418
+    },
+    {
+      "sample_index": 47,
+      "true_label_id": 90,
+      "true_label_name": "train",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.562879741191864
+    },
+    {
+      "sample_index": 48,
+      "true_label_id": 89,
+      "true_label_name": "tractor",
+      "predicted_label_id": 9,
+      "predicted_label_name": "bottle",
+      "predicted_confidence": 0.16249945759773254
+    },
+    {
+      "sample_index": 49,
+      "true_label_id": 78,
+      "true_label_name": "snake",
+      "predicted_label_id": 99,
+      "predicted_label_name": "worm",
+      "predicted_confidence": 0.10125581175088882
+    },
+    {
+      "sample_index": 50,
+      "true_label_id": 73,
+      "true_label_name": "shark",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.26847922801971436
+    },
+    {
+      "sample_index": 51,
+      "true_label_id": 14,
+      "true_label_name": "butterfly",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.10419361293315887
+    },
+    {
+      "sample_index": 52,
+      "true_label_id": 87,
+      "true_label_name": "television",
+      "predicted_label_id": 94,
+      "predicted_label_name": "wardrobe",
+      "predicted_confidence": 0.118388332426548
+    },
+    {
+      "sample_index": 53,
+      "true_label_id": 9,
+      "true_label_name": "bottle",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.3541202247142792
+    },
+    {
+      "sample_index": 54,
+      "true_label_id": 71,
+      "true_label_name": "sea",
+      "predicted_label_id": 16,
+      "predicted_label_name": "can",
+      "predicted_confidence": 0.09293429553508759
+    },
+    {
+      "sample_index": 55,
+      "true_label_id": 6,
+      "true_label_name": "bee",
+      "predicted_label_id": 72,
+      "predicted_label_name": "seal",
+      "predicted_confidence": 0.0904390811920166
+    },
+    {
+      "sample_index": 56,
+      "true_label_id": 47,
+      "true_label_name": "maple_tree",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.10065212100744247
+    },
+    {
+      "sample_index": 57,
+      "true_label_id": 20,
+      "true_label_name": "chair",
+      "predicted_label_id": 5,
+      "predicted_label_name": "bed",
+      "predicted_confidence": 0.6522635817527771
+    },
+    {
+      "sample_index": 58,
+      "true_label_id": 98,
+      "true_label_name": "woman",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.13970071077346802
+    },
+    {
+      "sample_index": 59,
+      "true_label_id": 47,
+      "true_label_name": "maple_tree",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.1255870759487152
+    },
+    {
+      "sample_index": 60,
+      "true_label_id": 36,
+      "true_label_name": "hamster",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.1786588728427887
+    },
+    {
+      "sample_index": 61,
+      "true_label_id": 55,
+      "true_label_name": "otter",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.2219974249601364
+    },
+    {
+      "sample_index": 62,
+      "true_label_id": 72,
+      "true_label_name": "seal",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.14331835508346558
+    },
+    {
+      "sample_index": 63,
+      "true_label_id": 43,
+      "true_label_name": "lion",
+      "predicted_label_id": 38,
+      "predicted_label_name": "kangaroo",
+      "predicted_confidence": 0.15507283806800842
+    },
+    {
+      "sample_index": 64,
+      "true_label_id": 51,
+      "true_label_name": "mushroom",
+      "predicted_label_id": 31,
+      "predicted_label_name": "elephant",
+      "predicted_confidence": 0.45170167088508606
+    },
+    {
+      "sample_index": 65,
+      "true_label_id": 35,
+      "true_label_name": "girl",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.22343102097511292
+    },
+    {
+      "sample_index": 66,
+      "true_label_id": 83,
+      "true_label_name": "sweet_pepper",
+      "predicted_label_id": 0,
+      "predicted_label_name": "apple",
+      "predicted_confidence": 0.2426438331604004
+    },
+    {
+      "sample_index": 67,
+      "true_label_id": 33,
+      "true_label_name": "forest",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.09561876952648163
+    },
+    {
+      "sample_index": 68,
+      "true_label_id": 27,
+      "true_label_name": "crocodile",
+      "predicted_label_id": 42,
+      "predicted_label_name": "leopard",
+      "predicted_confidence": 0.3237684369087219
+    },
+    {
+      "sample_index": 69,
+      "true_label_id": 53,
+      "true_label_name": "orange",
+      "predicted_label_id": 70,
+      "predicted_label_name": "rose",
+      "predicted_confidence": 0.27424150705337524
+    },
+    {
+      "sample_index": 70,
+      "true_label_id": 92,
+      "true_label_name": "tulip",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.19098341464996338
+    },
+    {
+      "sample_index": 71,
+      "true_label_id": 50,
+      "true_label_name": "mouse",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.11881393939256668
+    },
+    {
+      "sample_index": 72,
+      "true_label_id": 15,
+      "true_label_name": "camel",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.09201223403215408
+    },
+    {
+      "sample_index": 74,
+      "true_label_id": 36,
+      "true_label_name": "hamster",
+      "predicted_label_id": 72,
+      "predicted_label_name": "seal",
+      "predicted_confidence": 0.2068513035774231
+    },
+    {
+      "sample_index": 75,
+      "true_label_id": 18,
+      "true_label_name": "caterpillar",
+      "predicted_label_id": 82,
+      "predicted_label_name": "sunflower",
+      "predicted_confidence": 0.0805300697684288
+    },
+    {
+      "sample_index": 76,
+      "true_label_id": 89,
+      "true_label_name": "tractor",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.1365843117237091
+    },
+    {
+      "sample_index": 77,
+      "true_label_id": 46,
+      "true_label_name": "man",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.8035941123962402
+    },
+    {
+      "sample_index": 78,
+      "true_label_id": 33,
+      "true_label_name": "forest",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.11192936450242996
+    },
+    {
+      "sample_index": 81,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.15250618755817413
+    },
+    {
+      "sample_index": 82,
+      "true_label_id": 75,
+      "true_label_name": "skunk",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.1923738270998001
+    },
+    {
+      "sample_index": 83,
+      "true_label_id": 38,
+      "true_label_name": "kangaroo",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.18925517797470093
+    },
+    {
+      "sample_index": 84,
+      "true_label_id": 23,
+      "true_label_name": "cloud",
+      "predicted_label_id": 71,
+      "predicted_label_name": "sea",
+      "predicted_confidence": 0.1922629475593567
+    },
+    {
+      "sample_index": 85,
+      "true_label_id": 42,
+      "true_label_name": "leopard",
+      "predicted_label_id": 4,
+      "predicted_label_name": "beaver",
+      "predicted_confidence": 0.17416687309741974
+    },
+    {
+      "sample_index": 86,
+      "true_label_id": 66,
+      "true_label_name": "raccoon",
+      "predicted_label_id": 82,
+      "predicted_label_name": "sunflower",
+      "predicted_confidence": 0.14448241889476776
+    },
+    {
+      "sample_index": 87,
+      "true_label_id": 77,
+      "true_label_name": "snail",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.17718088626861572
+    },
+    {
+      "sample_index": 88,
+      "true_label_id": 49,
+      "true_label_name": "mountain",
+      "predicted_label_id": 36,
+      "predicted_label_name": "hamster",
+      "predicted_confidence": 0.0799112319946289
+    },
+    {
+      "sample_index": 89,
+      "true_label_id": 18,
+      "true_label_name": "caterpillar",
+      "predicted_label_id": 82,
+      "predicted_label_name": "sunflower",
+      "predicted_confidence": 0.06920738518238068
+    },
+    {
+      "sample_index": 90,
+      "true_label_id": 46,
+      "true_label_name": "man",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.28306445479393005
+    },
+    {
+      "sample_index": 91,
+      "true_label_id": 15,
+      "true_label_name": "camel",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.43329256772994995
+    },
+    {
+      "sample_index": 92,
+      "true_label_id": 35,
+      "true_label_name": "girl",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.16792838275432587
+    },
+    {
+      "sample_index": 93,
+      "true_label_id": 69,
+      "true_label_name": "rocket",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.23119720816612244
+    },
+    {
+      "sample_index": 94,
+      "true_label_id": 95,
+      "true_label_name": "whale",
+      "predicted_label_id": 38,
+      "predicted_label_name": "kangaroo",
+      "predicted_confidence": 0.10443994402885437
+    },
+    {
+      "sample_index": 95,
+      "true_label_id": 83,
+      "true_label_name": "sweet_pepper",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.2852022051811218
+    },
+    {
+      "sample_index": 96,
+      "true_label_id": 75,
+      "true_label_name": "skunk",
+      "predicted_label_id": 4,
+      "predicted_label_name": "beaver",
+      "predicted_confidence": 0.14370296895503998
+    },
+    {
+      "sample_index": 97,
+      "true_label_id": 99,
+      "true_label_name": "worm",
+      "predicted_label_id": 78,
+      "predicted_label_name": "snake",
+      "predicted_confidence": 0.1074385941028595
+    },
+    {
+      "sample_index": 98,
+      "true_label_id": 73,
+      "true_label_name": "shark",
+      "predicted_label_id": 71,
+      "predicted_label_name": "sea",
+      "predicted_confidence": 0.41224023699760437
+    },
+    {
+      "sample_index": 99,
+      "true_label_id": 93,
+      "true_label_name": "turtle",
+      "predicted_label_id": 72,
+      "predicted_label_name": "seal",
+      "predicted_confidence": 0.10386043787002563
+    },
+    {
+      "sample_index": 101,
+      "true_label_id": 39,
+      "true_label_name": "keyboard",
+      "predicted_label_id": 89,
+      "predicted_label_name": "tractor",
+      "predicted_confidence": 0.2222713977098465
+    },
+    {
+      "sample_index": 102,
+      "true_label_id": 4,
+      "true_label_name": "beaver",
+      "predicted_label_id": 75,
+      "predicted_label_name": "skunk",
+      "predicted_confidence": 0.1296396553516388
+    },
+    {
+      "sample_index": 103,
+      "true_label_id": 97,
+      "true_label_name": "wolf",
+      "predicted_label_id": 10,
+      "predicted_label_name": "bowl",
+      "predicted_confidence": 0.07812801003456116
+    },
+    {
+      "sample_index": 104,
+      "true_label_id": 61,
+      "true_label_name": "plate",
+      "predicted_label_id": 72,
+      "predicted_label_name": "seal",
+      "predicted_confidence": 0.13041339814662933
+    },
+    {
+      "sample_index": 105,
+      "true_label_id": 93,
+      "true_label_name": "turtle",
+      "predicted_label_id": 34,
+      "predicted_label_name": "fox",
+      "predicted_confidence": 0.19878587126731873
+    },
+    {
+      "sample_index": 106,
+      "true_label_id": 51,
+      "true_label_name": "mushroom",
+      "predicted_label_id": 4,
+      "predicted_label_name": "beaver",
+      "predicted_confidence": 0.11428413540124893
+    },
+    {
+      "sample_index": 107,
+      "true_label_id": 69,
+      "true_label_name": "rocket",
+      "predicted_label_id": 78,
+      "predicted_label_name": "snake",
+      "predicted_confidence": 0.2786993384361267
+    },
+    {
+      "sample_index": 108,
+      "true_label_id": 56,
+      "true_label_name": "palm_tree",
+      "predicted_label_id": 16,
+      "predicted_label_name": "can",
+      "predicted_confidence": 0.15326091647148132
+    },
+    {
+      "sample_index": 109,
+      "true_label_id": 84,
+      "true_label_name": "table",
+      "predicted_label_id": 5,
+      "predicted_label_name": "bed",
+      "predicted_confidence": 0.4337120056152344
+    },
+    {
+      "sample_index": 110,
+      "true_label_id": 59,
+      "true_label_name": "pine_tree",
+      "predicted_label_id": 76,
+      "predicted_label_name": "skyscraper",
+      "predicted_confidence": 0.10631727427244186
+    },
+    {
+      "sample_index": 111,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.2173854261636734
+    },
+    {
+      "sample_index": 112,
+      "true_label_id": 94,
+      "true_label_name": "wardrobe",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.2794768512248993
+    },
+    {
+      "sample_index": 113,
+      "true_label_id": 4,
+      "true_label_name": "beaver",
+      "predicted_label_id": 31,
+      "predicted_label_name": "elephant",
+      "predicted_confidence": 0.39852845668792725
+    },
+    {
+      "sample_index": 114,
+      "true_label_id": 11,
+      "true_label_name": "boy",
+      "predicted_label_id": 82,
+      "predicted_label_name": "sunflower",
+      "predicted_confidence": 0.11938505619764328
+    },
+    {
+      "sample_index": 115,
+      "true_label_id": 33,
+      "true_label_name": "forest",
+      "predicted_label_id": 90,
+      "predicted_label_name": "train",
+      "predicted_confidence": 0.1554957777261734
+    },
+    {
+      "sample_index": 116,
+      "true_label_id": 68,
+      "true_label_name": "road",
+      "predicted_label_id": 76,
+      "predicted_label_name": "skyscraper",
+      "predicted_confidence": 0.14436601102352142
+    },
+    {
+      "sample_index": 117,
+      "true_label_id": 38,
+      "true_label_name": "kangaroo",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.1677389144897461
+    },
+    {
+      "sample_index": 118,
+      "true_label_id": 20,
+      "true_label_name": "chair",
+      "predicted_label_id": 10,
+      "predicted_label_name": "bowl",
+      "predicted_confidence": 0.23637805879116058
+    },
+    {
+      "sample_index": 119,
+      "true_label_id": 33,
+      "true_label_name": "forest",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.12773136794567108
+    },
+    {
+      "sample_index": 121,
+      "true_label_id": 32,
+      "true_label_name": "flatfish",
+      "predicted_label_id": 2,
+      "predicted_label_name": "baby",
+      "predicted_confidence": 0.1255442351102829
+    },
+    {
+      "sample_index": 122,
+      "true_label_id": 46,
+      "true_label_name": "man",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.21604962646961212
+    },
+    {
+      "sample_index": 123,
+      "true_label_id": 53,
+      "true_label_name": "orange",
+      "predicted_label_id": 70,
+      "predicted_label_name": "rose",
+      "predicted_confidence": 0.1375543177127838
+    },
+    {
+      "sample_index": 125,
+      "true_label_id": 67,
+      "true_label_name": "ray",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.1836712658405304
+    },
+    {
+      "sample_index": 126,
+      "true_label_id": 70,
+      "true_label_name": "rose",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.34971243143081665
+    },
+    {
+      "sample_index": 127,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 4,
+      "predicted_label_name": "beaver",
+      "predicted_confidence": 0.31970471143722534
+    },
+    {
+      "sample_index": 128,
+      "true_label_id": 53,
+      "true_label_name": "orange",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.10962054878473282
+    },
+    {
+      "sample_index": 129,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.45420974493026733
+    },
+    {
+      "sample_index": 130,
+      "true_label_id": 8,
+      "true_label_name": "bicycle",
+      "predicted_label_id": 68,
+      "predicted_label_name": "road",
+      "predicted_confidence": 0.1798841804265976
+    },
+    {
+      "sample_index": 131,
+      "true_label_id": 96,
+      "true_label_name": "willow_tree",
+      "predicted_label_id": 0,
+      "predicted_label_name": "apple",
+      "predicted_confidence": 0.07405530661344528
+    },
+    {
+      "sample_index": 132,
+      "true_label_id": 87,
+      "true_label_name": "television",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.11841810494661331
+    },
+    {
+      "sample_index": 133,
+      "true_label_id": 30,
+      "true_label_name": "dolphin",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.1857210099697113
+    },
+    {
+      "sample_index": 134,
+      "true_label_id": 20,
+      "true_label_name": "chair",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.1384955495595932
+    },
+    {
+      "sample_index": 135,
+      "true_label_id": 30,
+      "true_label_name": "dolphin",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.13336485624313354
+    },
+    {
+      "sample_index": 136,
+      "true_label_id": 66,
+      "true_label_name": "raccoon",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.7132951617240906
+    },
+    {
+      "sample_index": 137,
+      "true_label_id": 19,
+      "true_label_name": "cattle",
+      "predicted_label_id": 17,
+      "predicted_label_name": "castle",
+      "predicted_confidence": 0.0500640869140625
+    },
+    {
+      "sample_index": 138,
+      "true_label_id": 76,
+      "true_label_name": "skyscraper",
+      "predicted_label_id": 12,
+      "predicted_label_name": "bridge",
+      "predicted_confidence": 0.07839182764291763
+    },
+    {
+      "sample_index": 139,
+      "true_label_id": 87,
+      "true_label_name": "television",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.1314985305070877
+    },
+    {
+      "sample_index": 140,
+      "true_label_id": 52,
+      "true_label_name": "oak_tree",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.07174607366323471
+    },
+    {
+      "sample_index": 141,
+      "true_label_id": 62,
+      "true_label_name": "poppy",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.4184958040714264
+    },
+    {
+      "sample_index": 142,
+      "true_label_id": 35,
+      "true_label_name": "girl",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.19668729603290558
+    },
+    {
+      "sample_index": 143,
+      "true_label_id": 63,
+      "true_label_name": "porcupine",
+      "predicted_label_id": 42,
+      "predicted_label_name": "leopard",
+      "predicted_confidence": 0.2506626546382904
+    },
+    {
+      "sample_index": 144,
+      "true_label_id": 40,
+      "true_label_name": "lamp",
+      "predicted_label_id": 53,
+      "predicted_label_name": "orange",
+      "predicted_confidence": 0.08421202749013901
+    },
+    {
+      "sample_index": 145,
+      "true_label_id": 4,
+      "true_label_name": "beaver",
+      "predicted_label_id": 36,
+      "predicted_label_name": "hamster",
+      "predicted_confidence": 0.1591508686542511
+    },
+    {
+      "sample_index": 146,
+      "true_label_id": 99,
+      "true_label_name": "worm",
+      "predicted_label_id": 78,
+      "predicted_label_name": "snake",
+      "predicted_confidence": 0.4070974886417389
+    },
+    {
+      "sample_index": 147,
+      "true_label_id": 63,
+      "true_label_name": "porcupine",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.11556468904018402
+    },
+    {
+      "sample_index": 148,
+      "true_label_id": 74,
+      "true_label_name": "shrew",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.07903505116701126
+    },
+    {
+      "sample_index": 149,
+      "true_label_id": 53,
+      "true_label_name": "orange",
+      "predicted_label_id": 70,
+      "predicted_label_name": "rose",
+      "predicted_confidence": 0.15549392998218536
+    },
+    {
+      "sample_index": 150,
+      "true_label_id": 26,
+      "true_label_name": "cra",
+      "predicted_label_id": 45,
+      "predicted_label_name": "lobster",
+      "predicted_confidence": 0.7898357510566711
+    },
+    {
+      "sample_index": 151,
+      "true_label_id": 95,
+      "true_label_name": "whale",
+      "predicted_label_id": 32,
+      "predicted_label_name": "flatfish",
+      "predicted_confidence": 0.2524547278881073
+    },
+    {
+      "sample_index": 152,
+      "true_label_id": 48,
+      "true_label_name": "motorcycle",
+      "predicted_label_id": 84,
+      "predicted_label_name": "table",
+      "predicted_confidence": 0.11493497341871262
+    },
+    {
+      "sample_index": 153,
+      "true_label_id": 27,
+      "true_label_name": "crocodile",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.17166632413864136
+    },
+    {
+      "sample_index": 154,
+      "true_label_id": 33,
+      "true_label_name": "forest",
+      "predicted_label_id": 29,
+      "predicted_label_name": "dinosaur",
+      "predicted_confidence": 0.09044873714447021
+    },
+    {
+      "sample_index": 156,
+      "true_label_id": 39,
+      "true_label_name": "keyboard",
+      "predicted_label_id": 78,
+      "predicted_label_name": "snake",
+      "predicted_confidence": 0.14545835554599762
+    },
+    {
+      "sample_index": 157,
+      "true_label_id": 79,
+      "true_label_name": "spider",
+      "predicted_label_id": 31,
+      "predicted_label_name": "elephant",
+      "predicted_confidence": 0.19875898957252502
+    },
+    {
+      "sample_index": 158,
+      "true_label_id": 32,
+      "true_label_name": "flatfish",
+      "predicted_label_id": 18,
+      "predicted_label_name": "caterpillar",
+      "predicted_confidence": 0.13016968965530396
+    },
+    {
+      "sample_index": 159,
+      "true_label_id": 46,
+      "true_label_name": "man",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.4206324815750122
+    },
+    {
+      "sample_index": 160,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.23812969028949738
+    },
+    {
+      "sample_index": 161,
+      "true_label_id": 28,
+      "true_label_name": "cup",
+      "predicted_label_id": 10,
+      "predicted_label_name": "bowl",
+      "predicted_confidence": 0.6754935383796692
+    },
+    {
+      "sample_index": 162,
+      "true_label_id": 85,
+      "true_label_name": "tank",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.2518446147441864
+    },
+    {
+      "sample_index": 163,
+      "true_label_id": 32,
+      "true_label_name": "flatfish",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.31695857644081116
+    },
+    {
+      "sample_index": 164,
+      "true_label_id": 82,
+      "true_label_name": "sunflower",
+      "predicted_label_id": 72,
+      "predicted_label_name": "seal",
+      "predicted_confidence": 0.1553509384393692
+    },
+    {
+      "sample_index": 165,
+      "true_label_id": 78,
+      "true_label_name": "snake",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.1092754527926445
+    },
+    {
+      "sample_index": 166,
+      "true_label_id": 39,
+      "true_label_name": "keyboard",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.12017267197370529
+    },
+    {
+      "sample_index": 167,
+      "true_label_id": 54,
+      "true_label_name": "orchid",
+      "predicted_label_id": 28,
+      "predicted_label_name": "cup",
+      "predicted_confidence": 0.08850976824760437
+    },
+    {
+      "sample_index": 169,
+      "true_label_id": 66,
+      "true_label_name": "raccoon",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.41553401947021484
+    },
+    {
+      "sample_index": 170,
+      "true_label_id": 65,
+      "true_label_name": "rabbit",
+      "predicted_label_id": 4,
+      "predicted_label_name": "beaver",
+      "predicted_confidence": 0.11072714626789093
+    },
+    {
+      "sample_index": 171,
+      "true_label_id": 72,
+      "true_label_name": "seal",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.28731659054756165
+    },
+    {
+      "sample_index": 173,
+      "true_label_id": 64,
+      "true_label_name": "possum",
+      "predicted_label_id": 38,
+      "predicted_label_name": "kangaroo",
+      "predicted_confidence": 0.44426700472831726
+    },
+    {
+      "sample_index": 174,
+      "true_label_id": 62,
+      "true_label_name": "poppy",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.3023110628128052
+    },
+    {
+      "sample_index": 175,
+      "true_label_id": 72,
+      "true_label_name": "seal",
+      "predicted_label_id": 54,
+      "predicted_label_name": "orchid",
+      "predicted_confidence": 0.059571169316768646
+    },
+    {
+      "sample_index": 176,
+      "true_label_id": 0,
+      "true_label_name": "apple",
+      "predicted_label_id": 52,
+      "predicted_label_name": "oak_tree",
+      "predicted_confidence": 0.08802159130573273
+    },
+    {
+      "sample_index": 177,
+      "true_label_id": 44,
+      "true_label_name": "lizard",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.8473737835884094
+    },
+    {
+      "sample_index": 178,
+      "true_label_id": 7,
+      "true_label_name": "beetle",
+      "predicted_label_id": 28,
+      "predicted_label_name": "cup",
+      "predicted_confidence": 0.08567090332508087
+    },
+    {
+      "sample_index": 179,
+      "true_label_id": 12,
+      "true_label_name": "bridge",
+      "predicted_label_id": 17,
+      "predicted_label_name": "castle",
+      "predicted_confidence": 0.46571627259254456
+    },
+    {
+      "sample_index": 180,
+      "true_label_id": 19,
+      "true_label_name": "cattle",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.4114781320095062
+    },
+    {
+      "sample_index": 181,
+      "true_label_id": 11,
+      "true_label_name": "boy",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.44030681252479553
+    },
+    {
+      "sample_index": 182,
+      "true_label_id": 31,
+      "true_label_name": "elephant",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.49796411395072937
+    },
+    {
+      "sample_index": 183,
+      "true_label_id": 61,
+      "true_label_name": "plate",
+      "predicted_label_id": 16,
+      "predicted_label_name": "can",
+      "predicted_confidence": 0.31514814496040344
+    },
+    {
+      "sample_index": 184,
+      "true_label_id": 79,
+      "true_label_name": "spider",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.18816648423671722
+    },
+    {
+      "sample_index": 185,
+      "true_label_id": 45,
+      "true_label_name": "lobster",
+      "predicted_label_id": 89,
+      "predicted_label_name": "tractor",
+      "predicted_confidence": 0.22562751173973083
+    },
+    {
+      "sample_index": 186,
+      "true_label_id": 81,
+      "true_label_name": "streetcar",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.11837127804756165
+    },
+    {
+      "sample_index": 187,
+      "true_label_id": 79,
+      "true_label_name": "spider",
+      "predicted_label_id": 92,
+      "predicted_label_name": "tulip",
+      "predicted_confidence": 0.09665365517139435
+    },
+    {
+      "sample_index": 188,
+      "true_label_id": 98,
+      "true_label_name": "woman",
+      "predicted_label_id": 83,
+      "predicted_label_name": "sweet_pepper",
+      "predicted_confidence": 0.14047779142856598
+    },
+    {
+      "sample_index": 189,
+      "true_label_id": 43,
+      "true_label_name": "lion",
+      "predicted_label_id": 31,
+      "predicted_label_name": "elephant",
+      "predicted_confidence": 0.42794591188430786
+    },
+    {
+      "sample_index": 190,
+      "true_label_id": 46,
+      "true_label_name": "man",
+      "predicted_label_id": 10,
+      "predicted_label_name": "bowl",
+      "predicted_confidence": 0.12601707875728607
+    },
+    {
+      "sample_index": 191,
+      "true_label_id": 67,
+      "true_label_name": "ray",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.14848530292510986
+    },
+    {
+      "sample_index": 192,
+      "true_label_id": 80,
+      "true_label_name": "squirrel",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.23317332565784454
+    },
+    {
+      "sample_index": 193,
+      "true_label_id": 68,
+      "true_label_name": "road",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.057921189814805984
+    },
+    {
+      "sample_index": 194,
+      "true_label_id": 74,
+      "true_label_name": "shrew",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.17983311414718628
+    },
+    {
+      "sample_index": 195,
+      "true_label_id": 48,
+      "true_label_name": "motorcycle",
+      "predicted_label_id": 27,
+      "predicted_label_name": "crocodile",
+      "predicted_confidence": 0.0982384979724884
+    },
+    {
+      "sample_index": 196,
+      "true_label_id": 81,
+      "true_label_name": "streetcar",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.09259134531021118
+    },
+    {
+      "sample_index": 197,
+      "true_label_id": 94,
+      "true_label_name": "wardrobe",
+      "predicted_label_id": 37,
+      "predicted_label_name": "house",
+      "predicted_confidence": 0.23511706292629242
+    },
+    {
+      "sample_index": 198,
+      "true_label_id": 86,
+      "true_label_name": "telephone",
+      "predicted_label_id": 48,
+      "predicted_label_name": "motorcycle",
+      "predicted_confidence": 0.06490042060613632
+    },
+    {
+      "sample_index": 199,
+      "true_label_id": 69,
+      "true_label_name": "rocket",
+      "predicted_label_id": 72,
+      "predicted_label_name": "seal",
+      "predicted_confidence": 0.13045012950897217
+    },
+    {
+      "sample_index": 200,
+      "true_label_id": 39,
+      "true_label_name": "keyboard",
+      "predicted_label_id": 22,
+      "predicted_label_name": "clock",
+      "predicted_confidence": 0.08154971152544022
+    },
+    {
+      "sample_index": 201,
+      "true_label_id": 73,
+      "true_label_name": "shark",
+      "predicted_label_id": 71,
+      "predicted_label_name": "sea",
+      "predicted_confidence": 0.08880741149187088
+    },
+    {
+      "sample_index": 202,
+      "true_label_id": 2,
+      "true_label_name": "baby",
+      "predicted_label_id": 82,
+      "predicted_label_name": "sunflower",
+      "predicted_confidence": 0.07916683703660965
+    },
+    {
+      "sample_index": 203,
+      "true_label_id": 46,
+      "true_label_name": "man",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.09620872139930725
+    },
+    {
+      "sample_index": 204,
+      "true_label_id": 49,
+      "true_label_name": "mountain",
+      "predicted_label_id": 17,
+      "predicted_label_name": "castle",
+      "predicted_confidence": 0.18783968687057495
+    },
+    {
+      "sample_index": 205,
+      "true_label_id": 63,
+      "true_label_name": "porcupine",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.14313048124313354
+    },
+    {
+      "sample_index": 207,
+      "true_label_id": 14,
+      "true_label_name": "butterfly",
+      "predicted_label_id": 21,
+      "predicted_label_name": "chimpanzee",
+      "predicted_confidence": 0.1520283967256546
+    },
+    {
+      "sample_index": 208,
+      "true_label_id": 49,
+      "true_label_name": "mountain",
+      "predicted_label_id": 63,
+      "predicted_label_name": "porcupine",
+      "predicted_confidence": 0.1533227115869522
+    },
+    {
+      "sample_index": 209,
+      "true_label_id": 68,
+      "true_label_name": "road",
+      "predicted_label_id": 55,
+      "predicted_label_name": "otter",
+      "predicted_confidence": 0.07472679018974304
+    },
+    {
+      "sample_index": 210,
+      "true_label_id": 65,
+      "true_label_name": "rabbit",
+      "predicted_label_id": 43,
+      "predicted_label_name": "lion",
+      "predicted_confidence": 0.23632249236106873
+    },
+    {
+      "sample_index": 211,
+      "true_label_id": 41,
+      "true_label_name": "lawn_mower",
+      "predicted_label_id": 81,
+      "predicted_label_name": "streetcar",
+      "predicted_confidence": 0.11508575081825256
+    },
+    {
+      "sample_index": 212,
+      "true_label_id": 37,
+      "true_label_name": "house",
+      "predicted_label_id": 45,
+      "predicted_label_name": "lobster",
+      "predicted_confidence": 0.13892894983291626
+    }
+  ]
+}
