@@ -17,6 +17,8 @@ try:
 except Exception:
     plt = None
 
+SUPPORTED_ABLATIONS = {"exp_a_baseline", "exp_b_prompt_pack", "exp_c_class_aware"}
+
 parser = argparse.ArgumentParser(description="Evaluate CLIP on multiple datasets.")
 parser.add_argument(
     "--weights",
@@ -33,7 +35,7 @@ parser.add_argument(
 parser.add_argument(
     "--run-ablations",
     action="store_true",
-    help="Run Exp A->E ablation sweep on eval datasets and select by weighted top-1 score.",
+    help="Run Exp A->C ablation sweep on eval datasets and select by weighted top-1 score.",
 )
 parser.add_argument(
     "--run-checkpoint-series",
@@ -369,21 +371,8 @@ def run_eval_ablation_sweep():
             "variants": Config.EVAL_CLASS_PROMPT_VARIANTS,
             "tta_modes": ["base"],
         },
-        {
-            "name": "exp_d_plus_tta",
-            "templates": Config.EVAL_TEXT_TEMPLATES,
-            "weights": [],
-            "variants": Config.EVAL_CLASS_PROMPT_VARIANTS,
-            "tta_modes": Config.EVAL_TTA_MODES,
-        },
-        {
-            "name": "exp_e_plus_weights",
-            "templates": Config.EVAL_TEXT_TEMPLATES,
-            "weights": Config.EVAL_TEMPLATE_WEIGHTS,
-            "variants": Config.EVAL_CLASS_PROMPT_VARIANTS,
-            "tta_modes": Config.EVAL_TTA_MODES,
-        },
     ]
+    exps = [exp for exp in exps if exp["name"] in SUPPORTED_ABLATIONS]
 
     summary = {
         "timestamp": datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
@@ -609,18 +598,35 @@ def _load_best_ablation_recipe(summary_path):
     with open(summary_path, "r") as f:
         summary = json.load(f)
     best_name = summary.get("best_experiment")
-    if not best_name:
-        raise ValueError(f"Missing best_experiment in ablation summary: {summary_path}")
     experiments = summary.get("experiments", [])
-    best_exp = None
-    for exp in experiments:
-        if exp.get("name") == best_name:
-            best_exp = exp
-            break
-    if best_exp is None:
+
+    # Ignore legacy D/E entries and select only from supported A-C variants.
+    ac_experiments = [e for e in experiments if e.get("name") in SUPPORTED_ABLATIONS]
+    if not ac_experiments:
         raise ValueError(
-            f"Could not find experiment '{best_name}' in ablation summary: {summary_path}"
+            "No supported A-C experiments found in ablation summary: "
+            f"{summary_path}"
         )
+
+    best_exp = None
+    if best_name in SUPPORTED_ABLATIONS:
+        for exp in ac_experiments:
+            if exp.get("name") == best_name:
+                best_exp = exp
+                break
+
+    # If legacy summary points best_experiment to D/E, fallback to highest score in A-C.
+    if best_exp is None:
+        best_exp = max(
+            ac_experiments,
+            key=lambda e: float(e.get("score", float("-inf"))),
+        )
+        best_name = best_exp.get("name")
+        print(
+            "best_experiment in summary is unsupported/legacy; "
+            f"falling back to best A-C entry: {best_name}"
+        )
+
     return {
         "name": best_name,
         "templates": best_exp.get("templates", Config.EVAL_TEXT_TEMPLATES),

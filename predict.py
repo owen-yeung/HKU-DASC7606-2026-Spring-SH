@@ -14,6 +14,8 @@ from data.dataset import get_eval_transform
 from model.clip import CLIP
 from utils import compute_ensemble_logits
 
+SUPPORTED_ABLATIONS = {"exp_a_baseline", "exp_b_prompt_pack", "exp_c_class_aware"}
+
 
 class TestDataset(Dataset):
     def __init__(self, root, transform=None):
@@ -114,21 +116,8 @@ def run_ablation_sweep(model, dataloader, class_names):
             "variants": Config.TESTSET_CLASS_PROMPT_VARIANTS,
             "tta_modes": ["base"],
         },
-        {
-            "name": "exp_d_plus_tta",
-            "templates": Config.EVAL_TEXT_TEMPLATES,
-            "weights": [],
-            "variants": Config.TESTSET_CLASS_PROMPT_VARIANTS,
-            "tta_modes": Config.PRED_TTA_MODES,
-        },
-        {
-            "name": "exp_e_plus_weights",
-            "templates": Config.EVAL_TEXT_TEMPLATES,
-            "weights": Config.EVAL_TEMPLATE_WEIGHTS,
-            "variants": Config.TESTSET_CLASS_PROMPT_VARIANTS,
-            "tta_modes": Config.PRED_TTA_MODES,
-        },
     ]
+    exps = [exp for exp in exps if exp["name"] in SUPPORTED_ABLATIONS]
 
     summary = {
         "timestamp": datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
@@ -233,7 +222,7 @@ parser = argparse.ArgumentParser(description="Predict on testset with CLIP.")
 parser.add_argument(
     "--run-ablations",
     action="store_true",
-    help="Run Exp A->E ablation ladder and save each prediction file.",
+    help="Run Exp A->C ablation ladder and save each prediction file.",
 )
 args = parser.parse_args()
 
