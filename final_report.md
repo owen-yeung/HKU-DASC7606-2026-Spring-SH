@@ -70,13 +70,35 @@ Due to runtime constraints, we selected the final recipe from completed **A-C** 
 
 From `clip-finetuned/full-run_lr2.5e-04_wd0.01_epochs11/lr_3e-04_wd_0.01_temp_0.05_2026-04-28_00-04-34/run_summary.json`:
 
-- Validation accuracy: `0.7873`
-- Validation top-5: `0.9997`
-- Validation top-10: `0.9999`
-- Best checkpoint: `checkpoint-6256`
-- Training artifacts:
-  - `training_loss_curve.png`
-  - `training_loss_curve_after_first_epoch.png`
+- **Run configuration snapshot:**
+  - Learning rate: `0.00025`
+  - Weight decay: `0.01`
+  - Temperature: `0.05`
+  - Epochs: `11`
+  - Train batch: `128`, gradient accumulation: `2`, effective train batch: `256`
+  - Eval batch: `256`
+  - LR scheduler: cosine, warmup ratio: `0.05`
+- **Validation metrics (epoch 11):**
+  - Eval loss: `0.3245`
+  - Top-1 / Top-5 / Top-10: `0.7873 / 0.9997 / 0.9999`
+  - Eval runtime: `80.40s`
+  - Throughput: `621.84 samples/s` (`2.44 steps/s`)
+- **Checkpoint selection:**
+  - Best model checkpoint: `checkpoint-6256`
+
+**Training loss curve (full run):**
+
+![Training loss curve](clip-finetuned/full-run_lr2.5e-04_wd0.01_epochs11/lr_3e-04_wd_0.01_temp_0.05_2026-04-28_00-04-34/training_loss_curve.png)
+
+**Training loss curve after epoch 1 (zoomed view):**
+
+![Training loss curve after epoch 1](clip-finetuned/full-run_lr2.5e-04_wd0.01_epochs11/lr_3e-04_wd_0.01_temp_0.05_2026-04-28_00-04-34/training_loss_curve_after_first_epoch.png)
+
+**Loss dynamics interpretation:**
+
+- The full curve shows a sharp initial drop (about `5.0 -> <0.5`) during early optimization, followed by a slower decline.
+- The post-epoch-1 zoom highlights continued improvement (`~0.24 -> ~0.17`) with moderate stochastic noise, indicating the model was still learning rather than flatlining.
+- No signs of divergence are visible; training appears stable throughout the 11-epoch schedule.
 
 ### 2.2 Latest Multi-Dataset Eval Snapshot
 
@@ -88,11 +110,21 @@ From `eval-reports/full-run/2026-04-28_11-37-00`:
 
 Interpretation: the model is very strong on ImageNet-style evaluation but still weak on CIFAR transfer, motivating prompt/TTA/recipe ablations and checkpoint-series analysis.
 
+**ImageNet note (pretrained vs final, no prompt-pack):**
+
+- Pretrained weights (`eval-reports/2026-04-27_12-40-55/imagenet_val.small.json`):
+  - top-1 `0.0013`, top-5 `0.0078`, top-10 `0.0178`
+- Final fine-tuned weights (`eval-reports/full-run/2026-04-28_11-37-00/imagenet_val.small.json`):
+  - top-1 `0.9986`, top-5 `0.9997`, top-10 `0.9999`
+
+This confirms that fine-tuning is the main driver of ImageNet performance. For ablation sweeps, we skipped ImageNet because the final no-extra-ablation setup was already near ceiling on ImageNet, while including ImageNet would significantly increase runtime and slow CIFAR-focused iteration.
+
 ### 2.3 Eval Comparison Table (Requested Setups)
 
-The table below compares the four requested settings:
+The table below compares the requested settings:
 
 - Pretrained weights, no prompt-pack (from `eval-reports/2026-04-27_12-40-55`)
+- Pretrained weights, with prompt-pack (from `eval-reports/full-run/2026-04-28_21-04-03`)
 - Final fine-tuned weights, no prompt-pack (Exp A)
 - Final fine-tuned weights, prompt-pack (Exp B)
 - Final fine-tuned weights, Exp C
@@ -100,6 +132,7 @@ The table below compares the four requested settings:
 | Setup | CIFAR-10 Top-1 | CIFAR-100 Top-1 | CIFAR-10 Top-2 / Top-3 | CIFAR-100 Top-5 / Top-10 |
 |---|---:|---:|---:|---:|
 | Pretrained weights, no prompt-pack | 0.1462 | 0.0103 | 0.2770 / 0.3971 | 0.0561 / 0.1091 |
+| Pretrained weights, with prompt-pack | 0.1370 | 0.0078 | 0.2449 / 0.3511 | 0.0455 / 0.0957 |
 | Final weights, Exp A (no prompt-pack) | 0.4290 | 0.1161 | 0.6110 / 0.7180 | 0.2778 / 0.3905 |
 | Final weights, Exp B (with prompt-pack) | 0.4379 | 0.1208 | 0.6226 / 0.7304 | 0.2853 / 0.3988 |
 | Final weights, Exp C | 0.4379 | 0.1208 | 0.6226 / 0.7304 | 0.2853 / 0.3988 |
