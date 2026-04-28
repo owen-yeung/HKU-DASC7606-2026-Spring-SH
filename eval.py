@@ -35,6 +35,23 @@ parser.add_argument(
     action="store_true",
     help="Run Exp A->E ablation sweep on eval datasets and select by weighted top-1 score.",
 )
+parser.add_argument(
+    "--run-checkpoint-series",
+    action="store_true",
+    help="Evaluate all checkpoint-* directories using best ablation recipe.",
+)
+parser.add_argument(
+    "--ablation-summary",
+    type=str,
+    default=None,
+    help="Path to eval_ablation_summary.json. If omitted, uses latest in eval pushable dir.",
+)
+parser.add_argument(
+    "--checkpoint-root",
+    type=str,
+    default=None,
+    help="Directory containing checkpoint-* folders. If omitted, inferred from BEST_MODEL_PATH.",
+)
 args = parser.parse_args()
 
 transform = get_eval_transform()
@@ -530,9 +547,269 @@ def _write_eval_ablation_report_bundle(summary, summary_path):
     print(f"Saved eval ablation HTML report to {html_path}")
 
 
+def _infer_checkpoint_root(best_model_path):
+    norm = os.path.normpath(best_model_path)
+    parent = os.path.dirname(norm)
+    parent_name = os.path.basename(parent)
+    if parent_name.startswith("checkpoint-"):
+        return os.path.dirname(parent)
+    return parent
+
+
+def _extract_checkpoint_step(checkpoint_dir_name):
+    try:
+        return int(checkpoint_dir_name.split("checkpoint-")[-1])
+    except Exception:
+        return -1
+
+
+def _find_latest_ablation_summary(base_dir):
+    candidates = []
+    for root, _, files in os.walk(base_dir):
+        if "eval_ablation_summary.json" in files:
+            abs_path = os.path.join(root, "eval_ablation_summary.json")
+            candidates.append((os.path.getmtime(abs_path), abs_path))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    return candidates[0][1]
+
+
+def _load_best_ablation_recipe(summary_path):
+    with open(summary_path, "r") as f:
+        summary = json.load(f)
+    best_name = summary.get("best_experiment")
+    if not best_name:
+        raise ValueError(f"Missing best_experiment in ablation summary: {summary_path}")
+    experiments = summary.get("experiments", [])
+    best_exp = None
+    for exp in experiments:
+        if exp.get("name") == best_name:
+            best_exp = exp
+            break
+    if best_exp is None:
+        raise ValueError(
+            f"Could not find experiment '{best_name}' in ablation summary: {summary_path}"
+        )
+    return {
+        "name": best_name,
+        "templates": best_exp.get("templates", Config.EVAL_TEXT_TEMPLATES),
+        "template_weights": best_exp.get("template_weights", []),
+        "tta_modes": best_exp.get("tta_modes", ["base"]),
+        "class_prompt_variants": best_exp.get(
+            "class_prompt_variants", Config.EVAL_CLASS_PROMPT_VARIANTS
+        ),
+    }
+
+
+def _write_checkpoint_series_report_bundle(summary, summary_path):
+    rows = sorted(summary["checkpoints"], key=lambda x: x["step"])
+    csv_path = os.path.join(pushable_output_dir, "checkpoint_series_leaderboard.csv")
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            [
+                "step",
+                "checkpoint",
+                "score",
+                "cifar10_top1",
+                "cifar100_top1",
+                "imagenet_top1",
+            ]
+        )
+        for row in rows:
+            writer.writerow(
+                [
+                    row["step"],
+                    row["checkpoint_name"],
+                    f"{row['score']:.6f}",
+                    f"{row['metrics']['cifar10_top1']:.6f}",
+                    f"{row['metrics']['cifar100_top1']:.6f}",
+                    f"{row['metrics']['imagenet_top1']:.6f}",
+                ]
+            )
+    print(f"Saved checkpoint series CSV to {csv_path}")
+
+    plot_path = os.path.join(pushable_output_dir, "checkpoint_series_scores.png")
+    if plt is not None and rows:
+        steps = [r["step"] for r in rows]
+        weighted = [r["score"] for r in rows]
+        cifar10 = [r["metrics"]["cifar10_top1"] for r in rows]
+        cifar100 = [r["metrics"]["cifar100_top1"] for r in rows]
+        imagenet = [r["metrics"]["imagenet_top1"] for r in rows]
+        plt.figure(figsize=(10, 5))
+        plt.plot(steps, weighted, marker="o", label="weighted_score")
+        plt.plot(steps, cifar10, marker="o", label="cifar10_top1")
+        plt.plot(steps, cifar100, marker="o", label="cifar100_top1")
+        plt.plot(steps, imagenet, marker="o", label="imagenet_top1")
+        plt.xlabel("Checkpoint step")
+        plt.ylabel("Score")
+        plt.title("Checkpoint Series Evaluation")
+        plt.grid(True, linestyle="--", alpha=0.4)
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig(plot_path, dpi=150)
+        plt.close()
+        print(f"Saved checkpoint series plot to {plot_path}")
+    else:
+        plot_path = None
+
+    md_path = os.path.join(pushable_output_dir, "checkpoint_series_report.md")
+    with open(md_path, "w") as f:
+        f.write("# Checkpoint Series Evaluation Report\n\n")
+        f.write(f"- Timestamp: `{summary['timestamp']}`\n")
+        f.write(f"- Checkpoint root: `{summary['checkpoint_root']}`\n")
+        f.write(f"- Ablation recipe: `{summary['ablation_recipe']['name']}`\n")
+        f.write(f"- Ablation summary source: `{summary['ablation_summary_path']}`\n")
+        f.write(f"- JSON summary: `{os.path.relpath(summary_path, pushable_output_dir)}`\n")
+        f.write(f"- CSV leaderboard: `{os.path.relpath(csv_path, pushable_output_dir)}`\n")
+        if plot_path:
+            f.write(f"- Trend plot: `{os.path.relpath(plot_path, pushable_output_dir)}`\n")
+        f.write("\n## Metrics by Checkpoint\n\n")
+        f.write("| Step | Checkpoint | Weighted Score | CIFAR10 Top1 | CIFAR100 Top1 | ImageNet Top1 |\n")
+        f.write("|---:|---|---:|---:|---:|---:|\n")
+        for row in rows:
+            f.write(
+                f"| {row['step']} | `{row['checkpoint_name']}` | {row['score']:.6f} | "
+                f"{row['metrics']['cifar10_top1']:.6f} | {row['metrics']['cifar100_top1']:.6f} | "
+                f"{row['metrics']['imagenet_top1']:.6f} |\n"
+            )
+    print(f"Saved checkpoint series markdown report to {md_path}")
+
+    html_path = os.path.join(pushable_output_dir, "checkpoint_series_report.html")
+    rows_html = []
+    for row in rows:
+        rows_html.append(
+            "<tr>"
+            f"<td>{row['step']}</td>"
+            f"<td><code>{row['checkpoint_name']}</code></td>"
+            f"<td>{row['score']:.6f}</td>"
+            f"<td>{row['metrics']['cifar10_top1']:.6f}</td>"
+            f"<td>{row['metrics']['cifar100_top1']:.6f}</td>"
+            f"<td>{row['metrics']['imagenet_top1']:.6f}</td>"
+            "</tr>"
+        )
+    plot_img = (
+        f'<p><img src="{os.path.basename(plot_path)}" alt="checkpoint trend plot" loading="lazy"/></p>'
+        if plot_path
+        else "<p><em>matplotlib unavailable: trend plot not generated.</em></p>"
+    )
+    html = f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkpoint Series Evaluation</title>
+  <style>
+    body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 20px; }}
+    table {{ border-collapse: collapse; width: 100%; margin-top: 12px; }}
+    th, td {{ border: 1px solid #ddd; padding: 8px; }}
+    th {{ text-align: left; background: #f6f6f6; }}
+    code {{ background: #f5f5f5; padding: 1px 4px; border-radius: 4px; }}
+    img {{ max-width: 100%; height: auto; }}
+  </style>
+</head>
+<body>
+  <h1>Checkpoint Series Evaluation</h1>
+  <p>Ablation recipe: <code>{summary['ablation_recipe']['name']}</code></p>
+  <p>Score weights: <code>{summary['score_weights']}</code></p>
+  {plot_img}
+  <table>
+    <thead>
+      <tr>
+        <th>Step</th><th>Checkpoint</th><th>Weighted Score</th><th>CIFAR10 Top1</th><th>CIFAR100 Top1</th><th>ImageNet Top1</th>
+      </tr>
+    </thead>
+    <tbody>
+      {''.join(rows_html)}
+    </tbody>
+  </table>
+</body>
+</html>
+"""
+    with open(html_path, "w") as f:
+        f.write(html)
+    print(f"Saved checkpoint series HTML report to {html_path}")
+
+
+def run_checkpoint_series_eval():
+    checkpoint_root = args.checkpoint_root or _infer_checkpoint_root(args.checkpoint)
+    if not os.path.isdir(checkpoint_root):
+        raise FileNotFoundError(f"Checkpoint root does not exist: {checkpoint_root}")
+
+    ablation_summary_path = args.ablation_summary
+    if not ablation_summary_path:
+        ablation_summary_path = _find_latest_ablation_summary(Config.EVAL_PUSHABLE_DIR)
+    if not ablation_summary_path:
+        raise FileNotFoundError(
+            "Could not find eval_ablation_summary.json. Provide --ablation-summary explicitly."
+        )
+
+    recipe = _load_best_ablation_recipe(ablation_summary_path)
+    print(
+        f"Using best ablation recipe '{recipe['name']}' from {ablation_summary_path}"
+    )
+
+    checkpoint_dirs = []
+    for entry in os.listdir(checkpoint_root):
+        if not entry.startswith("checkpoint-"):
+            continue
+        model_path = os.path.join(checkpoint_root, entry, "model.safetensors")
+        if os.path.isfile(model_path):
+            checkpoint_dirs.append((entry, model_path))
+    checkpoint_dirs.sort(key=lambda x: _extract_checkpoint_step(x[0]))
+    if not checkpoint_dirs:
+        raise RuntimeError(f"No checkpoint-*/model.safetensors found under {checkpoint_root}")
+
+    summary = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
+        "checkpoint_root": checkpoint_root,
+        "ablation_summary_path": ablation_summary_path,
+        "ablation_recipe": recipe,
+        "score_weights": Config.EVAL_ABLATION_SCORE_WEIGHTS,
+        "checkpoints": [],
+    }
+    best_ckpt = None
+    best_score = None
+    for checkpoint_name, checkpoint_path in checkpoint_dirs:
+        print(f"Evaluating checkpoint series item: {checkpoint_name}")
+        state_dict = load_file(checkpoint_path)
+        model.load_state_dict(state_dict)
+        metrics = _evaluate_all_datasets(
+            recipe_name=f"series_{checkpoint_name}",
+            templates=recipe["templates"],
+            template_weights=recipe["template_weights"],
+            class_prompt_variants=recipe["class_prompt_variants"],
+            tta_modes=recipe["tta_modes"],
+        )
+        score = _compute_weighted_score(metrics)
+        record = {
+            "checkpoint_name": checkpoint_name,
+            "checkpoint_path": checkpoint_path,
+            "step": _extract_checkpoint_step(checkpoint_name),
+            "metrics": metrics,
+            "score": score,
+            "artifact_paths": metrics["artifact_paths"],
+        }
+        summary["checkpoints"].append(record)
+        if best_score is None or score > best_score:
+            best_score = score
+            best_ckpt = checkpoint_name
+
+    summary["best_checkpoint"] = best_ckpt
+    summary["best_score"] = best_score
+    summary_path = os.path.join(pushable_output_dir, "checkpoint_series_summary.json")
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2)
+    print(f"Saved checkpoint series summary to {summary_path}")
+    _write_checkpoint_series_report_bundle(summary, summary_path)
+
+
 if args.run_ablations or Config.EVAL_RUN_ABLATIONS:
     run_eval_ablation_sweep()
-else:
+if args.run_checkpoint_series:
+    run_checkpoint_series_eval()
+elif not (args.run_ablations or Config.EVAL_RUN_ABLATIONS):
     default_tta_modes = Config.EVAL_TTA_MODES if Config.EVAL_ENABLE_TTA else ["base"]
     _evaluate_all_datasets(
         recipe_name="default",

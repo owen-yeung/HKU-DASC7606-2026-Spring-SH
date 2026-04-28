@@ -20,4 +20,9 @@ clip-finetuned/**
 !eval-reports/**/eval_ablation_report.md
 !eval-reports/**/eval_ablation_report.html
 !eval-reports/**/eval_ablation_scores.png
+!eval-reports/**/checkpoint_series_summary.json
+!eval-reports/**/checkpoint_series_leaderboard.csv
+!eval-reports/**/checkpoint_series_report.md
+!eval-reports/**/checkpoint_series_report.html
+!eval-reports/**/checkpoint_series_scores.png
 backup
